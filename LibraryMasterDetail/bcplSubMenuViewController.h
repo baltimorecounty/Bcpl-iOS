@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface bcplSubMenuViewController : UIViewController<UISplitViewControllerDelegate>
+@class bcplRssFeedController;
+
+@interface bcplSubMenuViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *whatToReadMenu;
+
+@property (strong, nonatomic) bcplRssFeedController *rssFeedViewController;
 
 @end

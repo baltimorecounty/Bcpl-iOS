@@ -59,7 +59,6 @@
                         <segue destination="Pbs-do-JjN" kind="push" identifier="segueSubMenu" id="TTF-sh-pOf"/>
                         <segue destination="Ah7-4n-0Wa" kind="push" identifier="showDetail" id="oqC-Fk-Mas"/>
                         <segue destination="Wwi-Lp-8pn" kind="push" identifier="segueRssEvents" id="QGu-8C-Ju5"/>
-                        <segue destination="GXF-FE-Kfc" kind="push" identifier="segueEventBranches" id="9qo-Z6-Jpj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
@@ -69,6 +68,7 @@
         <!--Bcpl Sub Menu View Controller-->
         <scene sceneID="xpz-Lt-qG6">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OPU-RF-bhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Pbs-do-JjN" customClass="bcplSubMenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RK9-pD-G1J"/>
@@ -103,7 +103,6 @@
                         <segue destination="Wwi-Lp-8pn" kind="push" identifier="segueRssFeed" id="Lhi-8b-PeU"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OPU-RF-bhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="177" y="-462"/>
         </scene>
@@ -140,11 +139,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ppd-F7-Lvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="753" y="68"/>
+            <point key="canvasLocation" x="737" y="-10"/>
         </scene>
         <!--Bcpl Rss Detail View Controller-->
         <scene sceneID="Rbg-FS-qeJ">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vJv-NJ-Xn6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="h2z-js-Jgr" customClass="bcplRssDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nq7-Hd-gU6"/>
@@ -176,9 +176,8 @@
                         <outlet property="rssDetailView" destination="vNP-S9-bPx" id="hcK-87-y65"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vJv-NJ-Xn6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1265" y="68"/>
+            <point key="canvasLocation" x="1277" y="-10"/>
         </scene>
         <!--Bcpl Detail View Controller - Detail-->
         <scene sceneID="Cn3-H9-jdl">
@@ -207,47 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="177" y="466"/>
-        </scene>
-        <!--Bcpl Event Branches View Controller-->
-        <scene sceneID="353-e7-Zc9">
-            <objects>
-                <viewController id="GXF-FE-Kfc" customClass="bcplEventBranchesViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XjQ-sN-D4E"/>
-                        <viewControllerLayoutGuide type="bottom" id="0N9-GP-fV2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Q50-rY-rFk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Juf-Ek-8Iq">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="GXF-FE-Kfc" id="tym-zF-PwU"/>
-                                    <outlet property="delegate" destination="GXF-FE-Kfc" id="n45-T2-zr5"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Juf-Ek-8Iq" secondAttribute="bottom" id="VMu-ZP-ySI"/>
-                            <constraint firstItem="Juf-Ek-8Iq" firstAttribute="leading" secondItem="Q50-rY-rFk" secondAttribute="leading" id="YGo-f9-TXj"/>
-                            <constraint firstItem="Juf-Ek-8Iq" firstAttribute="top" secondItem="Q50-rY-rFk" secondAttribute="top" id="efp-4m-ZEy"/>
-                            <constraint firstAttribute="trailing" secondItem="Juf-Ek-8Iq" secondAttribute="trailing" id="inb-Vn-Bs9"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="hjg-5B-d1w"/>
-                    <connections>
-                        <outlet property="eventBranchesTableView" destination="Juf-Ek-8Iq" id="MAn-oq-cYg"/>
-                        <segue destination="Wwi-Lp-8pn" kind="push" identifier="segueEventFeed" id="p46-Fs-dPm"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4as-SG-hW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="177" y="1320"/>
+            <point key="canvasLocation" x="177" y="354"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -256,6 +215,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="p46-Fs-dPm"/>
+        <segue reference="QGu-8C-Ju5"/>
     </inferredMetricsTieBreakers>
 </document>

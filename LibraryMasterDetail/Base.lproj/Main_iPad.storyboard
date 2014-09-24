@@ -17,7 +17,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fS-aE-onr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448" y="-630"/>
+            <point key="canvasLocation" x="-851" y="-1104"/>
         </scene>
         <!--Bcpl Detail View Controller - Detail-->
         <scene sceneID="yUG-lL-AsK">
@@ -31,24 +31,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oLZ-Hg-zJO">
-                                <rect key="frame" x="0.0" y="64" width="703" height="768"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="B5j-wQ-HRL">
+                                <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
-                    <connections>
-                        <outlet property="MyWebView" destination="oLZ-Hg-zJO" id="adg-dE-lC6"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448" y="248"/>
+            <point key="canvasLocation" x="-36" y="1472"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -63,7 +60,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-687" y="-630"/>
+            <point key="canvasLocation" x="-2190" y="-906"/>
         </scene>
         <!--Bcpl Master View Controller - Master-->
         <scene sceneID="smW-Zh-WAh">
@@ -100,11 +97,164 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="BCPL" id="Zdf-7t-Un8"/>
+                    <connections>
+                        <segue destination="vfd-zE-VGk" kind="push" identifier="showDetail" splitViewControllerTargetIndex="1" id="C9c-d9-kHI"/>
+                        <segue destination="zxn-DM-Z0K" kind="push" identifier="segueSubMenu" id="g3l-Nv-jBr"/>
+                        <segue destination="Je3-hQ-ARH" kind="push" identifier="segueRssEvents" id="Ztm-nL-e9z"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="859" y="-631"/>
+            <point key="canvasLocation" x="-292" y="-1104"/>
+        </scene>
+        <!--Bcpl Sub Menu View Controller-->
+        <scene sceneID="Mcg-bW-sZH">
+            <objects>
+                <viewController id="zxn-DM-Z0K" customClass="bcplSubMenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5WC-Gw-ca2"/>
+                        <viewControllerLayoutGuide type="bottom" id="2U8-FR-HgM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mPy-L9-ncx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eMD-Ux-N6P">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="zxn-DM-Z0K" id="BNH-T1-NQK"/>
+                                    <outlet property="delegate" destination="zxn-DM-Z0K" id="iWa-Hf-AHC"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eMD-Ux-N6P" firstAttribute="leading" secondItem="mPy-L9-ncx" secondAttribute="leading" id="5aB-zb-dbZ"/>
+                            <constraint firstItem="eMD-Ux-N6P" firstAttribute="top" secondItem="mPy-L9-ncx" secondAttribute="top" id="GJR-k9-m5B"/>
+                            <constraint firstAttribute="trailing" secondItem="eMD-Ux-N6P" secondAttribute="trailing" id="Lnr-LL-o6S"/>
+                            <constraint firstAttribute="bottom" secondItem="eMD-Ux-N6P" secondAttribute="bottom" id="l03-Yv-QBq"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RV6-iQ-I3A"/>
+                    <connections>
+                        <outlet property="whatToReadMenu" destination="eMD-Ux-N6P" id="2hY-g3-zWS"/>
+                        <segue destination="Je3-hQ-ARH" kind="push" identifier="segueRssFeed" id="y8B-ZX-xgx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wMU-qL-SpU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="662" y="-276"/>
+        </scene>
+        <!--Bcpl Rss Feed Controller-->
+        <scene sceneID="Dmk-Qg-OrF">
+            <objects>
+                <viewController id="Je3-hQ-ARH" customClass="bcplRssFeedController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mdt-mj-JeJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="hn1-C5-aed"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZxM-sh-NMq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="F1D-eb-Hkv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Je3-hQ-ARH" id="6BL-DO-2cb"/>
+                                    <outlet property="delegate" destination="Je3-hQ-ARH" id="qTX-gv-DS4"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rsy-jq-V6D"/>
+                    <connections>
+                        <outlet property="rssFeedTableView" destination="F1D-eb-Hkv" id="Lr8-dk-r9j"/>
+                        <segue destination="uzp-Cm-c9K" kind="push" identifier="segueRssDetail" splitViewControllerTargetIndex="1" id="99j-KI-hu4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jgV-sv-zWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1383" y="-1104"/>
+        </scene>
+        <!--Bcpl Rss Detail View Controller-->
+        <scene sceneID="j5G-wj-oGv">
+            <objects>
+                <viewController id="uzp-Cm-c9K" customClass="bcplRssDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EkR-ct-6Vy"/>
+                        <viewControllerLayoutGuide type="bottom" id="8cx-If-tDL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nIk-zy-kIU">
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIz-w5-ph2">
+                                <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xIz-w5-ph2" firstAttribute="top" secondItem="nIk-zy-kIU" secondAttribute="top" id="6Bn-qV-ggy"/>
+                            <constraint firstItem="xIz-w5-ph2" firstAttribute="leading" secondItem="nIk-zy-kIU" secondAttribute="leading" id="YOs-AD-iFa"/>
+                            <constraint firstAttribute="trailing" secondItem="xIz-w5-ph2" secondAttribute="trailing" id="sZv-iB-aWa"/>
+                            <constraint firstAttribute="bottom" secondItem="xIz-w5-ph2" secondAttribute="bottom" id="wbo-HX-vlf"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CPU-Fs-Wdo"/>
+                    <connections>
+                        <outlet property="rssDetailView" destination="xIz-w5-ph2" id="hXU-Vx-Adu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gjI-1H-hxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1975" y="-1104"/>
+        </scene>
+        <!--Bcpl Detail View Controller-->
+        <scene sceneID="tio-Ed-zw5">
+            <objects>
+                <viewController id="vfd-zE-VGk" customClass="bcplDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NSq-7q-LKE"/>
+                        <viewControllerLayoutGuide type="bottom" id="hPb-8s-9s5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9NY-5N-S2b">
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t03-uf-rIx">
+                                <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="t03-uf-rIx" secondAttribute="trailing" id="GUd-UL-ZQs"/>
+                            <constraint firstItem="t03-uf-rIx" firstAttribute="top" secondItem="9NY-5N-S2b" secondAttribute="top" id="M02-fH-EAD"/>
+                            <constraint firstItem="t03-uf-rIx" firstAttribute="leading" secondItem="9NY-5N-S2b" secondAttribute="leading" id="PJI-bS-Phv"/>
+                            <constraint firstAttribute="bottom" secondItem="t03-uf-rIx" secondAttribute="bottom" id="fbI-UR-dYU"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RDN-hn-cPk"/>
+                    <connections>
+                        <outlet property="MyWebView" destination="t03-uf-rIx" id="1Bp-Xm-VH0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zq5-FJ-iER" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="415" y="-2358"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
@@ -114,12 +264,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="JEX-9P-axG" kind="relationship" relationship="rootViewController" id="GKi-kA-LjT"/>
+                        <segue destination="JEX-9P-axG" kind="relationship" relationship="rootViewController" id="4iv-wL-3sL"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-366" y="248"/>
+            <point key="canvasLocation" x="-869" y="1472"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -127,4 +277,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ztm-nL-e9z"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2BE9F319D1BB1F008A60F3 /* WhatToReadItems in Resources */ = {isa = PBXBuildFile; fileRef = 2C2BE9F219D1BB1F008A60F3 /* WhatToReadItems */; };
+		2C2BE9F619D1C055008A60F3 /* bcplRssFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BE9F519D1C055008A60F3 /* bcplRssFeedController.m */; };
+		2C2BE9F919D1F49B008A60F3 /* bcplRssDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BE9F819D1F49B008A60F3 /* bcplRssDetailViewController.m */; };
 		2C69F4FE19D07AEC0061401C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C69F4FD19D07AEC0061401C /* Foundation.framework */; };
 		2C69F50019D07AEC0061401C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C69F4FF19D07AEC0061401C /* CoreGraphics.framework */; };
 		2C69F50219D07AEC0061401C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C69F50119D07AEC0061401C /* UIKit.framework */; };
@@ -27,8 +30,8 @@
 		2C69F53F19D07E900061401C /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C69F53C19D07E900061401C /* HTMLNode.m */; };
 		2C69F54019D07E900061401C /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C69F53E19D07E900061401C /* HTMLParser.m */; };
 		2C69F54219D07EBD0061401C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C69F54119D07EBD0061401C /* libxml2.dylib */; };
-		2C69F54519D094D80061401C /* copyBcplMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C69F54419D094D80061401C /* copyBcplMasterViewController.m */; };
 		2C69F58F19D0A7E60061401C /* bcplSubMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C69F58E19D0A7E60061401C /* bcplSubMenuViewController.m */; };
+		2C76493319D3683D004A9575 /* bcplEventBranchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76493219D3683D004A9575 /* bcplEventBranchesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C2BE9F219D1BB1F008A60F3 /* WhatToReadItems */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WhatToReadItems; sourceTree = "<group>"; };
+		2C2BE9F419D1C055008A60F3 /* bcplRssFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplRssFeedController.h; sourceTree = "<group>"; };
+		2C2BE9F519D1C055008A60F3 /* bcplRssFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplRssFeedController.m; sourceTree = "<group>"; };
+		2C2BE9F719D1F49B008A60F3 /* bcplRssDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplRssDetailViewController.h; sourceTree = "<group>"; };
+		2C2BE9F819D1F49B008A60F3 /* bcplRssDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplRssDetailViewController.m; sourceTree = "<group>"; };
 		2C69F4FA19D07AEC0061401C /* LibraryMasterDetail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryMasterDetail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C69F4FD19D07AEC0061401C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C69F4FF19D07AEC0061401C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -71,10 +79,10 @@
 		2C69F53D19D07E900061401C /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLParser.h; path = "../../RssPrototype/RssPrototype/Objective-C-HMTL-Parser/HTMLParser.h"; sourceTree = "<group>"; };
 		2C69F53E19D07E900061401C /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLParser.m; path = "../../RssPrototype/RssPrototype/Objective-C-HMTL-Parser/HTMLParser.m"; sourceTree = "<group>"; };
 		2C69F54119D07EBD0061401C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		2C69F54319D094D80061401C /* copyBcplMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = copyBcplMasterViewController.h; sourceTree = "<group>"; };
-		2C69F54419D094D80061401C /* copyBcplMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = copyBcplMasterViewController.m; sourceTree = "<group>"; };
 		2C69F58D19D0A7E60061401C /* bcplSubMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplSubMenuViewController.h; sourceTree = "<group>"; };
 		2C69F58E19D0A7E60061401C /* bcplSubMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplSubMenuViewController.m; sourceTree = "<group>"; };
+		2C76493119D3683D004A9575 /* bcplEventBranchesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplEventBranchesViewController.h; sourceTree = "<group>"; };
+		2C76493219D3683D004A9575 /* bcplEventBranchesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplEventBranchesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,10 +160,15 @@
 				2C69F51919D07AEC0061401C /* bcplDetailViewController.m */,
 				2C69F51B19D07AEC0061401C /* Images.xcassets */,
 				2C69F50419D07AEC0061401C /* Supporting Files */,
-				2C69F54319D094D80061401C /* copyBcplMasterViewController.h */,
-				2C69F54419D094D80061401C /* copyBcplMasterViewController.m */,
 				2C69F58D19D0A7E60061401C /* bcplSubMenuViewController.h */,
 				2C69F58E19D0A7E60061401C /* bcplSubMenuViewController.m */,
+				2C2BE9F219D1BB1F008A60F3 /* WhatToReadItems */,
+				2C2BE9F419D1C055008A60F3 /* bcplRssFeedController.h */,
+				2C2BE9F519D1C055008A60F3 /* bcplRssFeedController.m */,
+				2C2BE9F719D1F49B008A60F3 /* bcplRssDetailViewController.h */,
+				2C2BE9F819D1F49B008A60F3 /* bcplRssDetailViewController.m */,
+				2C76493119D3683D004A9575 /* bcplEventBranchesViewController.h */,
+				2C76493219D3683D004A9575 /* bcplEventBranchesViewController.m */,
 			);
 			path = LibraryMasterDetail;
 			sourceTree = "<group>";
@@ -270,6 +283,7 @@
 				2C69F51C19D07AEC0061401C /* Images.xcassets in Resources */,
 				2C69F51119D07AEC0061401C /* Main_iPhone.storyboard in Resources */,
 				2C69F50819D07AEC0061401C /* InfoPlist.strings in Resources */,
+				2C2BE9F319D1BB1F008A60F3 /* WhatToReadItems in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,15 +302,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C69F54519D094D80061401C /* copyBcplMasterViewController.m in Sources */,
 				2C69F51A19D07AEC0061401C /* bcplDetailViewController.m in Sources */,
+				2C76493319D3683D004A9575 /* bcplEventBranchesViewController.m in Sources */,
 				2C69F58F19D0A7E60061401C /* bcplSubMenuViewController.m in Sources */,
 				2C69F50A19D07AEC0061401C /* main.m in Sources */,
 				2C69F53F19D07E900061401C /* HTMLNode.m in Sources */,
+				2C2BE9F619D1C055008A60F3 /* bcplRssFeedController.m in Sources */,
 				2C69F50E19D07AEC0061401C /* bcplAppDelegate.m in Sources */,
 				2C69F51719D07AEC0061401C /* bcplMasterViewController.m in Sources */,
 				2C69F54019D07E900061401C /* HTMLParser.m in Sources */,
 				2C69F53A19D07CC10061401C /* RSSEntry.m in Sources */,
+				2C2BE9F919D1F49B008A60F3 /* bcplRssDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +542,7 @@
 				2C69F53419D07AED0061401C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2C69F53519D07AED0061401C /* Build configuration list for PBXNativeTarget "LibraryMasterDetailTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +551,7 @@
 				2C69F53719D07AED0061401C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

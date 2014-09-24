@@ -9,6 +9,7 @@
 #import "bcplMasterViewController.h"
 
 #import "bcplDetailViewController.h"
+#import "bcplRssFeedController.h"
 #import "HTMLParser.h"
 #import "HTMLNode.h"
 
@@ -68,23 +69,24 @@
 {
     static NSString *simpleTableIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+    }
     
     NSDate *object = _objects[indexPath.row];
     cell.textLabel.text = [object description];
-    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *test = @"maryt's test";
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        
-        
-    }
-    else {
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        
+//        
+//    }
+//    else {
         //Get the row of the cell so we can identify which menu item was selected
         NSInteger rowOfCell = [indexPath row];
         
@@ -101,10 +103,48 @@
             [self performSegueWithIdentifier:@"showDetail" sender:menuItem];
         }
         else {
-            [self performSegueWithIdentifier:@"segueSubMenu" sender:test];
+            NSArray *rssFeeds = @[@"News", @"Events"];
+            NSMutableDictionary *rssItem;
+            
+            if ([rssFeeds containsObject:menuTitle]) {
+            
+                if([menuTitle isEqualToString:@"News"]) {
+                
+                    rssItem = [NSMutableDictionary dictionaryWithDictionary:@{@"title": menuTitle, @"url": @"https://www.facebook.com/feeds/page.php?format=rss20&id=7391356947", @"showImage": @false}];
+                    [self performSegueWithIdentifier:@"segueRssEvents" sender:rssItem];
+                }
+            
+                if([menuTitle isEqualToString:@"Events"]) {
+//                    rssItem = [NSMutableDictionary dictionaryWithDictionary:@{@"title": menuTitle, @"url": @"http://md.evanced.info/bcpl/lib/eventsxml.asp?ag=&et=&lib=ALL&nd=30&feedtitle=Baltimore+County+Public+Library%3CBR%3ESchedule+of+Events&dm=rss2&LangType=0", @"showImage": @false}];
+                    
+                    [self performSegueWithIdentifier:@"segueEventBranches" sender:nil];
+                }
+            
+                
+            }
+            else {
+                //MenuItem should be equal to "What to Read"
+                //This is the only main menu item that takes you to another menu
+                [self performSegueWithIdentifier:@"segueSubMenu" sender:nil];
+            }
         }
+    //}
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        bcplDetailViewController *dvc = [segue destinationViewController];
+        
+        [dvc setMenuItem:sender];
     }
     
+    if ([[segue identifier] isEqualToString:@"segueRssEvents"]) {
+        bcplRssFeedController *rssVc = [segue destinationViewController];
+        
+        [rssVc setRssItem:sender];
+    }
 }
 
 //Gets the appropriate url based on the menu title being passed in
@@ -128,57 +168,6 @@
         return nil;
     }
 }
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    
-
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        bcplDetailViewController *dvc = [segue destinationViewController];
-        
-        [dvc setMenuItem:sender];
-    }
-    
-    if ([[segue identifier] isEqualToString:@"sequeSubMenu"]) {
-        bcplSubMenuViewController *smv = [segue destinationViewController];
-    }
-}
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    
-//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        
-//
-//        if ([menuItem isEqualToString:@"Catalog"]) {
-//            object = @"https://catalog.bcpl.lib.md.us/Mobile/Search";
-//        }
-//        else if([menuItem isEqualToString:@"My Account"]) {
-//            object = @"https://catalog.bcpl.lib.md.us/Mobile/MyAccount/Logon";
-//        }
-//        else if([menuItem isEqualToString:@"Branches and Hours"]) {
-//            object = @"https://catalog.bcpl.lib.md.us/Mobile/Hours?organizationID=1";
-//        }
-//        else if([menuItem isEqualToString:@"Mobile Tools"]) {
-//            object = @"https://catalog.bcpl.lib.md.us/mobile/Custom/Pages/Bcpl-databases-mobile.aspx";
-//        }
-//        else if([menuItem isEqualToString:@"Ask Us"]) {
-//            object = @"http://bcpl.libanswers.com/mobile.php";
-//        }
-//        else {
-//           object = _objects[indexPath.row];
-//            
-//            //Manually trigger seque we want to perform
-//            
-//        }
-//        
-//        [[segue destinationViewController] setDetailItem:object];
-//    }
-//    else {
-//        
-//    }
-//}
 
 
 
