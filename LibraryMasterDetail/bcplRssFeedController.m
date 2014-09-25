@@ -53,6 +53,9 @@
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
     [parser parse];
+    
+    
+    
 }
 
 
@@ -84,24 +87,42 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"Cell";
+    NSString *title = [_rssItem objectForKey:@"title"];
+    BOOL showImage = [[_rssItem objectForKey:@"showImage"] boolValue];
+    NSString *htmlTitle = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
+    NSString *htmlDesc = [[feeds objectAtIndex:indexPath.row] objectForKey: @"description"];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
-    }
-    
-    BOOL showImage = [[_rssItem objectForKey:@"showImage"] boolValue];
-    
-    if (showImage) {
-        NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
-        [[cell imageView] setImage:[UIImage imageWithData:myImage]];
-    }
+    if (cell == nil && [title rangeOfString:@"Events"].location != NSNotFound) {
+        NSString *dateTimeText = [self getDateTime:htmlDesc];
+        NSString *dateText = [self getDate:dateTimeText];
+        NSString *timeText = [self getTime:dateTimeText];
+        NSString *startTime = [self getStartTime:timeText];
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:simpleTableIdentifier];
+        
+        cell.textLabel.text = startTime;
 
-    cell.textLabel.text = [self parseHtml:[[feeds objectAtIndex:indexPath.row] objectForKey: @"title"]];
+        cell.detailTextLabel.text = [self parseHtml:htmlTitle];
+
+    }
+    else if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+        
+        if (showImage) {
+            NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
+            [[cell imageView] setImage:[UIImage imageWithData:myImage]];
+            
+            cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
+            
+            cell.detailTextLabel.text = [self parseHtml:htmlDesc];
+
+        }
+        
+    }
     
-    cell.detailTextLabel.text = [self parseHtml:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
-    
+    //Set that little arrow to let the you know that each cell is selectable
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -159,6 +180,8 @@
         [description appendString:string];
     }
 }
+
+
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
     if ([elementName isEqualToString:@"item"]) {
@@ -172,14 +195,90 @@
     }
     
 }
+
+//Once we get the data for the RSS Feed Reload our table view so that it's populated with that data.
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    
-    
     [self.rssFeedTableView reloadData];
+}
+
+//Retreive a date time string from the html being passed in
+//The html string is expected to be in the following format
+//<b>When:</b> Tuesday, September 30, 2014 - 9:30 AM - 10:30 AM<br><b>Where:</b> Arbutus Branch at * Arbutus Meeting Room<br><br>Connect with your baby through stories, rhymes, bounces and songs, followed by a play time. <i>Registration required.</i><br />
+-(NSString *)getDateTime:(NSString *)htmlString {
+    NSArray *parts = [htmlString componentsSeparatedByString:@"<br>"];
+    
+    for(NSString *part in parts) {
+        if ([part rangeOfString:@"When:"].location != NSNotFound) {
+            //Replace the br tag, the bold label and trim the string
+            return [[[part stringByReplacingOccurrencesOfString:@"<b>When:</b>" withString:@""] stringByReplacingOccurrencesOfString:@"<br>" withString:@""] stringByTrimmingCharactersInSet:
+            [NSCharacterSet whitespaceCharacterSet]];
+        }
+    }
+    
+    return nil;
+}
+
+//Extracts Date String from a datetime string that should be in the following format
+//Friday, September 26, 2014 - 1:00 PM - 3:00 PM
+-(NSString *)getDate:(NSString *)dateString {
+    //Return date in the following format
+    //Day Name, MonthName DayNumber, Year
+    NSError * __autoreleasing *error;
+    NSString *pattern = @"\\w*,\\s\\w*\\s\\d{1,2},\\s\\d{4}";
+    
+    NSRegularExpression *dateRegExp = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:error];
+    
+    NSArray *dates = [dateRegExp matchesInString:dateString options:0 range:NSMakeRange(0, [dateString length])];
+    
+    for ( NSTextCheckingResult* match in dates )
+    {
+        NSString* matchText = [dateString substringWithRange:[match range]];
+        return matchText;
+    }
+    return nil;
+}
+
+//Extracts Time String from a datetime string that should be in the following format
+//Friday, September 26, 2014 - 1:00 PM - 3:00 PM
+-(NSString *)getTime:(NSString *)dateString {
+    NSError * __autoreleasing *error;
+    NSString *pattern = @"\\d{1,2}:\\d{2}\\s(A|P)M\\s-\\s\\d{1,2}:\\d{2}\\s(A|P)M";
+    
+    NSRegularExpression *dateRegExp = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:error];
+    
+    
+    NSArray *times = [dateRegExp matchesInString:dateString options:0 range:NSMakeRange(0, [dateString length])];
+    
+    for ( NSTextCheckingResult* match in times )
+    {
+        NSString* matchText = [dateString substringWithRange:[match range]];
+        return matchText;
+    }
+    return nil;
+
+}
+
+//Extracts Time String from a datetime string that should be in the following format
+//Friday, September 26, 2014 - 1:00 PM - 3:00 PM
+-(NSString *)getStartTime:(NSString *)timeString {
+    NSError * __autoreleasing *error;
+    NSString *pattern = @"\\d{1,2}:\\d{2}\\s(A|P)M";
+    
+    NSRegularExpression *dateRegExp = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:error];
+    
+    
+    NSArray *times = [dateRegExp matchesInString:timeString options:0 range:NSMakeRange(0, [timeString length])];
+    
+    for ( NSTextCheckingResult* match in times )
+    {
+        NSString* matchText = [timeString substringWithRange:[match range]];
+        return matchText;
+    }
+    return nil;
     
 }
 
-
+//Removes any html tags from a string formatted as html
 -(NSString *)parseHtml:(NSString *)htmlString {
     NSError * __autoreleasing *error;
     
@@ -190,6 +289,7 @@
     return [bodyNode allContents];
 }
 
+//Retrieves the first image from a string formatted as html
 -(NSData *)getImageUrl:(NSString *)htmlString {
     NSError * __autoreleasing *error;
     

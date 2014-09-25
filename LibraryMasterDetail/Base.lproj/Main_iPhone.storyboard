@@ -119,7 +119,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="irc-hX-lUy">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="irc-hX-lUy">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -131,6 +131,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="irc-hX-lUy" secondAttribute="bottom" id="BXx-aP-3Ba"/>
+                            <constraint firstItem="irc-hX-lUy" firstAttribute="leading" secondItem="VUp-iI-ccY" secondAttribute="leading" id="RUX-lg-bZb"/>
+                            <constraint firstItem="irc-hX-lUy" firstAttribute="top" secondItem="VUp-iI-ccY" secondAttribute="top" id="Vy1-N2-Lmc"/>
+                            <constraint firstAttribute="trailing" secondItem="irc-hX-lUy" secondAttribute="trailing" id="WE3-dH-wWi"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eBt-Ce-pdL"/>
                     <connections>
