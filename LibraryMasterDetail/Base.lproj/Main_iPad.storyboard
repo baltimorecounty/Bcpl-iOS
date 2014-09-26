@@ -249,7 +249,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="RDN-hn-cPk"/>
                     <connections>
-                        <outlet property="MyWebView" destination="t03-uf-rIx" id="1Bp-Xm-VH0"/>
+                        <outlet property="webView" destination="t03-uf-rIx" id="1Bp-Xm-VH0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zq5-FJ-iER" userLabel="First Responder" sceneMemberID="firstResponder"/>

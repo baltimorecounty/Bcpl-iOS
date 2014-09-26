@@ -15,11 +15,15 @@
     NSMutableArray *_objects; //TODO Remove this
     NSXMLParser *parser;
     NSMutableArray *feeds;
+    NSMutableArray *feedDates;
     NSMutableDictionary *item;
     NSMutableString *title;
     NSMutableString *link;
+    NSMutableString *pubDate;
     NSMutableString *description;
     NSString *element;
+    NSMutableDictionary *rssDateGrouping;
+    NSString *screenTitle;
 }
 
 @end
@@ -29,19 +33,14 @@
 - (void)setRssItem:(id)rssItem
 {
     _rssItem = rssItem;
-    
-    //_wvUrl = [rssItem objectForKey:@"url"];
-    //_wvTitle = [rssItem objectForKey:@"title"];
-    
-    // Update the view.
-    [self configureView];
+
 }
 
 - (void)configureView
 {
     //self.detailViewController = (bcplDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-    self.title = [_rssItem objectForKey:@"title"];
+    self.title = screenTitle;
     
     feeds = [[NSMutableArray alloc] init];
     
@@ -54,14 +53,13 @@
     [parser setShouldResolveExternalEntities:NO];
     [parser parse];
     
-    
-    
 }
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    screenTitle = [_rssItem objectForKey:@"title"];
     
     [self configureView];
 }
@@ -87,41 +85,44 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"Cell";
-    NSString *title = [_rssItem objectForKey:@"title"];
-    BOOL showImage = [[_rssItem objectForKey:@"showImage"] boolValue];
-    NSString *htmlTitle = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
+    NSString *myTitle = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
     NSString *htmlDesc = [[feeds objectAtIndex:indexPath.row] objectForKey: @"description"];
     
+    BOOL showImage = [[_rssItem objectForKey:@"showImage"] boolValue];
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil && [title rangeOfString:@"Events"].location != NSNotFound) {
-        NSString *dateTimeText = [self getDateTime:htmlDesc];
-        NSString *dateText = [self getDate:dateTimeText];
-        NSString *timeText = [self getTime:dateTimeText];
-        NSString *startTime = [self getStartTime:timeText];
-        
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:simpleTableIdentifier];
-        
-        cell.textLabel.text = startTime;
-
-        cell.detailTextLabel.text = [self parseHtml:htmlTitle];
-
-    }
-    else if (cell == nil) {
+    if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
-        
-        if (showImage) {
-            NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
-            [[cell imageView] setImage:[UIImage imageWithData:myImage]];
-            
-            cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
-            
-            cell.detailTextLabel.text = [self parseHtml:htmlDesc];
-
-        }
-        
     }
     
+    
+    if ([screenTitle rangeOfString:@"News"].location != NSNotFound) {
+//        NSString *pubDate = [[feeds objectAtIndex:indexPath.row] objectForKey: @"pubDate"];
+//        
+//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//        //Thu, 25 Sep 2014 18:04:13 +0100
+//        [dateFormatter setDateFormat:@""];
+//        NSDate *inputDate = [dateFormatter dateFromString:pubDate];
+//        NSDateFormatter *outputDateFormatter = [[NSDateFormatter alloc] init];
+//        NSString *outputDate = [outputDateFormatter stringFromDate:inputDate];
+//        
+//        
+//        
+//        cell.detailTextLabel.text = outputDate;
+    }
+    else {
+        cell.detailTextLabel.text = [self parseHtml:htmlDesc];
+    }
+    
+    if (showImage) {
+        NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
+        [[cell imageView] setImage:[UIImage imageWithData:myImage]];
+
+    }
+    cell.textLabel.text = [self parseHtml:myTitle];
+    
+    
+
     //Set that little arrow to let the you know that each cell is selectable
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -131,8 +132,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSInteger rowOfCell = [indexPath row];
     NSString *title = [self parseHtml:[[feeds objectAtIndex:indexPath.row] objectForKey: @"title"]];
     
     NSString *htmlContent = [[feeds objectAtIndex:indexPath.row] objectForKey: @"description"];
@@ -140,7 +139,6 @@
     NSDictionary *rssDetails = @{@"title": title, @"content": htmlContent};
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
     }
     
     [self performSegueWithIdentifier:@"segueRssDetail" sender:rssDetails];
@@ -166,7 +164,7 @@
         title   = [[NSMutableString alloc] init];
         link    = [[NSMutableString alloc] init];
         description = [[NSMutableString alloc] init];
-        
+        pubDate = [[NSMutableString alloc] init];
     }
 }
 
@@ -178,17 +176,22 @@
         [link appendString:string];
     } else if ([element isEqualToString:@"description"]) {
         [description appendString:string];
+    } else if ([element isEqualToString:@"pubDate"]) {
+        [description appendString:string];
     }
 }
 
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
+    
     if ([elementName isEqualToString:@"item"]) {
         
-        [item setObject:title forKey:@"title"];
-        [item setObject:link forKey:@"link"];
-        [item setObject:description forKey:@"description"];
+            [item setObject:title forKey:@"title"];
+            [item setObject:link forKey:@"link"];
+            [item setObject:description forKey:@"description"];
+            [item setObject:pubDate forKey:@"pubDate"];
+    
         
         [feeds addObject:[item copy]];
         
@@ -199,83 +202,6 @@
 //Once we get the data for the RSS Feed Reload our table view so that it's populated with that data.
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     [self.rssFeedTableView reloadData];
-}
-
-//Retreive a date time string from the html being passed in
-//The html string is expected to be in the following format
-//<b>When:</b> Tuesday, September 30, 2014 - 9:30 AM - 10:30 AM<br><b>Where:</b> Arbutus Branch at * Arbutus Meeting Room<br><br>Connect with your baby through stories, rhymes, bounces and songs, followed by a play time. <i>Registration required.</i><br />
--(NSString *)getDateTime:(NSString *)htmlString {
-    NSArray *parts = [htmlString componentsSeparatedByString:@"<br>"];
-    
-    for(NSString *part in parts) {
-        if ([part rangeOfString:@"When:"].location != NSNotFound) {
-            //Replace the br tag, the bold label and trim the string
-            return [[[part stringByReplacingOccurrencesOfString:@"<b>When:</b>" withString:@""] stringByReplacingOccurrencesOfString:@"<br>" withString:@""] stringByTrimmingCharactersInSet:
-            [NSCharacterSet whitespaceCharacterSet]];
-        }
-    }
-    
-    return nil;
-}
-
-//Extracts Date String from a datetime string that should be in the following format
-//Friday, September 26, 2014 - 1:00 PM - 3:00 PM
--(NSString *)getDate:(NSString *)dateString {
-    //Return date in the following format
-    //Day Name, MonthName DayNumber, Year
-    NSError * __autoreleasing *error;
-    NSString *pattern = @"\\w*,\\s\\w*\\s\\d{1,2},\\s\\d{4}";
-    
-    NSRegularExpression *dateRegExp = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:error];
-    
-    NSArray *dates = [dateRegExp matchesInString:dateString options:0 range:NSMakeRange(0, [dateString length])];
-    
-    for ( NSTextCheckingResult* match in dates )
-    {
-        NSString* matchText = [dateString substringWithRange:[match range]];
-        return matchText;
-    }
-    return nil;
-}
-
-//Extracts Time String from a datetime string that should be in the following format
-//Friday, September 26, 2014 - 1:00 PM - 3:00 PM
--(NSString *)getTime:(NSString *)dateString {
-    NSError * __autoreleasing *error;
-    NSString *pattern = @"\\d{1,2}:\\d{2}\\s(A|P)M\\s-\\s\\d{1,2}:\\d{2}\\s(A|P)M";
-    
-    NSRegularExpression *dateRegExp = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:error];
-    
-    
-    NSArray *times = [dateRegExp matchesInString:dateString options:0 range:NSMakeRange(0, [dateString length])];
-    
-    for ( NSTextCheckingResult* match in times )
-    {
-        NSString* matchText = [dateString substringWithRange:[match range]];
-        return matchText;
-    }
-    return nil;
-
-}
-
-//Extracts Time String from a datetime string that should be in the following format
-//Friday, September 26, 2014 - 1:00 PM - 3:00 PM
--(NSString *)getStartTime:(NSString *)timeString {
-    NSError * __autoreleasing *error;
-    NSString *pattern = @"\\d{1,2}:\\d{2}\\s(A|P)M";
-    
-    NSRegularExpression *dateRegExp = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:error];
-    
-    
-    NSArray *times = [dateRegExp matchesInString:timeString options:0 range:NSMakeRange(0, [timeString length])];
-    
-    for ( NSTextCheckingResult* match in times )
-    {
-        NSString* matchText = [timeString substringWithRange:[match range]];
-        return matchText;
-    }
-    return nil;
-    
 }
 
 //Removes any html tags from a string formatted as html
@@ -308,8 +234,5 @@
     
     return nil;
 }
-
-
-
 
 @end

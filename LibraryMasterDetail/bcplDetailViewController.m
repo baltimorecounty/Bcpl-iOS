@@ -15,6 +15,9 @@
 
 @implementation bcplDetailViewController
 
+
+@synthesize webView, detailViewLoadingIndicator;
+
 #pragma mark - Managing the detail item
 
 - (void)setMenuItem:(id)menuItem
@@ -23,9 +26,6 @@
     
     _wvUrl = [_menuItem objectForKey:@"url"];
     _wvTitle = [_menuItem objectForKey:@"title"];
-    
-    // Update the view.
-    [self configureView];
 }
 
 - (void)configureView
@@ -36,18 +36,57 @@
         //Set the title of the page to the menu Item selected
         self.navigationItem.title = self.wvTitle;
         
+        //This puts the dynamically created webview below the navbar
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+
+        
+        //CGRect webFrame = [[UIScreen mainScreen] bounds];
+        //CGRect webFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        webView = [[UIWebView alloc] init];
+        webView.delegate = self;
+        webView.scalesPageToFit = YES;
+        
+        webView.contentMode = UIViewContentModeScaleToFill;
+        webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        
         NSString *fullURL = [self.wvUrl description];
         NSURL *url = [NSURL URLWithString:fullURL];
         NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
         
-        [_MyWebView loadRequest:requestObj];
+        [webView loadRequest:requestObj];
+        
+        
     }
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [self.detailViewLoadingIndicator startAnimating];
+    self.detailViewLoadingIndicator.hidden = NO;
+}
+
+- (void) webViewDidFinishLoad:(UIWebView *)webView {
+    [self.detailViewLoadingIndicator stopAnimating];
+    [self.view addSubview:webView];
+    
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    
+    //Fixes view for portrait and landscape
+    //Needs to be applied after teh subview is added ot teh screen
+    [webView setFrame:frame];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    
+    NSLog(@"Error for WEBVIEW: %@", [error description]);
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // Update the view.
     [self configureView];
 }
 

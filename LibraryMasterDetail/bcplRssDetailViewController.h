@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet UIWebView *rssDetailView;
 
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *rssDetailLoadingIndicator;
 
 
 @end

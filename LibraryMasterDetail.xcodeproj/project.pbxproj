@@ -32,6 +32,7 @@
 		2C69F54219D07EBD0061401C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C69F54119D07EBD0061401C /* libxml2.dylib */; };
 		2C69F58F19D0A7E60061401C /* bcplSubMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C69F58E19D0A7E60061401C /* bcplSubMenuViewController.m */; };
 		2C76493319D3683D004A9575 /* bcplEventBranchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76493219D3683D004A9575 /* bcplEventBranchesViewController.m */; };
+		2CA85A4019D48D9900B3A694 /* bcplEventFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA85A3F19D48D9900B3A694 /* bcplEventFeedViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 		2C69F58E19D0A7E60061401C /* bcplSubMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplSubMenuViewController.m; sourceTree = "<group>"; };
 		2C76493119D3683D004A9575 /* bcplEventBranchesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplEventBranchesViewController.h; sourceTree = "<group>"; };
 		2C76493219D3683D004A9575 /* bcplEventBranchesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplEventBranchesViewController.m; sourceTree = "<group>"; };
+		2CA85A3E19D48D9900B3A694 /* bcplEventFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplEventFeedViewController.h; sourceTree = "<group>"; };
+		2CA85A3F19D48D9900B3A694 /* bcplEventFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplEventFeedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 				2C2BE9F819D1F49B008A60F3 /* bcplRssDetailViewController.m */,
 				2C76493119D3683D004A9575 /* bcplEventBranchesViewController.h */,
 				2C76493219D3683D004A9575 /* bcplEventBranchesViewController.m */,
+				2CA85A3E19D48D9900B3A694 /* bcplEventFeedViewController.h */,
+				2CA85A3F19D48D9900B3A694 /* bcplEventFeedViewController.m */,
 			);
 			path = LibraryMasterDetail;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 				2C69F50A19D07AEC0061401C /* main.m in Sources */,
 				2C69F53F19D07E900061401C /* HTMLNode.m in Sources */,
 				2C2BE9F619D1C055008A60F3 /* bcplRssFeedController.m in Sources */,
+				2CA85A4019D48D9900B3A694 /* bcplEventFeedViewController.m in Sources */,
 				2C69F50E19D07AEC0061401C /* bcplAppDelegate.m in Sources */,
 				2C69F51719D07AEC0061401C /* bcplMasterViewController.m in Sources */,
 				2C69F54019D07E900061401C /* HTMLParser.m in Sources */,

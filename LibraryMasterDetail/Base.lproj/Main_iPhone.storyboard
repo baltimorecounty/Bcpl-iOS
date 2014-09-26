@@ -82,6 +82,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="ib3-hr-yY2">
+                                    <rect key="frame" x="0.0" y="64" width="320" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <connections>
                                     <outlet property="dataSource" destination="Pbs-do-JjN" id="X78-z3-Kxs"/>
                                     <outlet property="delegate" destination="Pbs-do-JjN" id="Q2b-9b-YnZ"/>
@@ -168,6 +172,10 @@
                                     <outlet property="delegate" destination="h2z-js-Jgr" id="7cU-8r-ndn"/>
                                 </connections>
                             </webView>
+                            <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MRP-Va-Lor">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -179,6 +187,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="DKA-37-bSe"/>
                     <connections>
+                        <outlet property="rssDetailLoadingIndicator" destination="MRP-Va-Lor" id="Vbu-kL-Bxq"/>
                         <outlet property="rssDetailView" destination="vNP-S9-bPx" id="hcK-87-y65"/>
                     </connections>
                 </viewController>
@@ -198,22 +207,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zJd-6J-IWf">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJd-6J-IWf">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sqa-0y-BE4">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zJd-6J-IWf" secondAttribute="trailing" id="Bhc-ZY-6Hv"/>
+                            <constraint firstItem="zJd-6J-IWf" firstAttribute="top" secondItem="MMQ-IT-qOo" secondAttribute="top" id="EBr-fR-jaV"/>
+                            <constraint firstAttribute="bottom" secondItem="zJd-6J-IWf" secondAttribute="bottom" id="I1W-y3-pjr"/>
+                            <constraint firstItem="zJd-6J-IWf" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" id="PB3-nb-8Sb"/>
+                            <constraint firstItem="zJd-6J-IWf" firstAttribute="centerX" secondItem="sqa-0y-BE4" secondAttribute="centerX" id="Qfy-n3-iMx"/>
+                            <constraint firstItem="zJd-6J-IWf" firstAttribute="centerY" secondItem="sqa-0y-BE4" secondAttribute="centerY" id="ldi-Ge-hWl"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
                     <connections>
-                        <outlet property="MyWebView" destination="zJd-6J-IWf" id="VhI-UQ-3VV"/>
+                        <outlet property="detailViewLoadingIndicator" destination="sqa-0y-BE4" id="QVR-Ld-DbR"/>
+                        <outlet property="webView" destination="zJd-6J-IWf" id="VhI-UQ-3VV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="177" y="466"/>
+        </scene>
+        <!--Bcpl Event Feed View Controller-->
+        <scene sceneID="TyX-H6-XVg">
+            <objects>
+                <viewController id="Ue9-AY-XwA" customClass="bcplEventFeedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="clP-wb-Hdp"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZjK-je-4vp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QUk-SJ-Tx1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8MQ-OV-gM5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ue9-AY-XwA" id="ayZ-bx-HYk"/>
+                                </connections>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="McG-r1-UBf">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8MQ-OV-gM5" firstAttribute="top" secondItem="QUk-SJ-Tx1" secondAttribute="top" id="3PA-1Y-MPE"/>
+                            <constraint firstAttribute="bottom" secondItem="8MQ-OV-gM5" secondAttribute="bottom" id="EE7-Nb-7jc"/>
+                            <constraint firstItem="8MQ-OV-gM5" firstAttribute="leading" secondItem="QUk-SJ-Tx1" secondAttribute="leading" id="KnZ-bY-l4O"/>
+                            <constraint firstAttribute="trailing" secondItem="8MQ-OV-gM5" secondAttribute="trailing" id="UyQ-H9-Ijw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rgb-Ox-YF5"/>
+                    <connections>
+                        <outlet property="eventFeedLoadingIndicator" destination="McG-r1-UBf" id="mf0-KA-d5K"/>
+                        <outlet property="eventFeedTableView" destination="8MQ-OV-gM5" id="801-yO-g8L"/>
+                        <segue destination="h2z-js-Jgr" kind="push" identifier="segueEventDetail" id="kBK-yH-uPy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QWF-z1-Hq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="745" y="1320"/>
         </scene>
         <!--Bcpl Event Branches View Controller-->
         <scene sceneID="353-e7-Zc9">
@@ -248,7 +314,7 @@
                     <navigationItem key="navigationItem" id="hjg-5B-d1w"/>
                     <connections>
                         <outlet property="eventBranchesTableView" destination="Juf-Ek-8Iq" id="MAn-oq-cYg"/>
-                        <segue destination="Wwi-Lp-8pn" kind="push" identifier="segueEventFeed" id="p46-Fs-dPm"/>
+                        <segue destination="Ue9-AY-XwA" kind="push" identifier="segueEventFeed" id="Ly9-lb-OtD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4as-SG-hW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -262,6 +328,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="p46-Fs-dPm"/>
+        <segue reference="kBK-yH-uPy"/>
+        <segue reference="Lhi-8b-PeU"/>
     </inferredMetricsTieBreakers>
 </document>

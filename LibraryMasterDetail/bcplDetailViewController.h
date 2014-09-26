@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface bcplDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface bcplDetailViewController : UIViewController <UISplitViewControllerDelegate, UIWebViewDelegate> {
+    NSTimer *timer;
+    UIWebView *webView;
+}
 
 @property (strong, nonatomic) id menuItem;
 
 @property (strong, nonatomic) id wvTitle;
 @property (strong, nonatomic) id wvUrl;
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
-@property (strong, nonatomic) IBOutlet UIWebView *MyWebView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *detailViewLoadingIndicator;
 
 @end
