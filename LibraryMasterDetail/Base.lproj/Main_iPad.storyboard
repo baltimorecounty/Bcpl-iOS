@@ -31,17 +31,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="B5j-wQ-HRL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lib-main.png" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-lW-whm">
                                 <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ELY-lW-whm" secondAttribute="bottom" id="cgY-jr-dnA"/>
+                            <constraint firstAttribute="trailing" secondItem="ELY-lW-whm" secondAttribute="trailing" id="gHr-Vr-kHd"/>
+                            <constraint firstItem="ELY-lW-whm" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="kvq-DY-WrA"/>
+                            <constraint firstItem="ELY-lW-whm" firstAttribute="top" secondItem="svH-Pt-448" secondAttribute="top" id="u0b-Mn-AfV"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" id="mOI-FS-AaM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
@@ -237,18 +242,25 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Foi-Om-v3X">
+                                <rect key="frame" x="341" y="374" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Foi-Om-v3X" firstAttribute="centerY" secondItem="t03-uf-rIx" secondAttribute="centerY" id="8oF-Tc-NLm"/>
                             <constraint firstAttribute="trailing" secondItem="t03-uf-rIx" secondAttribute="trailing" id="GUd-UL-ZQs"/>
                             <constraint firstItem="t03-uf-rIx" firstAttribute="top" secondItem="9NY-5N-S2b" secondAttribute="top" id="M02-fH-EAD"/>
                             <constraint firstItem="t03-uf-rIx" firstAttribute="leading" secondItem="9NY-5N-S2b" secondAttribute="leading" id="PJI-bS-Phv"/>
                             <constraint firstAttribute="bottom" secondItem="t03-uf-rIx" secondAttribute="bottom" id="fbI-UR-dYU"/>
+                            <constraint firstItem="Foi-Om-v3X" firstAttribute="centerX" secondItem="t03-uf-rIx" secondAttribute="centerX" id="hhh-oD-7LQ"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="RDN-hn-cPk"/>
                     <connections>
+                        <outlet property="detailViewLoadingIndicator" destination="Foi-Om-v3X" id="jAJ-2r-KrY"/>
                         <outlet property="webView" destination="t03-uf-rIx" id="1Bp-Xm-VH0"/>
                     </connections>
                 </viewController>
@@ -272,12 +284,15 @@
             <point key="canvasLocation" x="-869" y="1472"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lib-main.png" width="600" height="800"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ztm-nL-e9z"/>
+        <segue reference="y8B-ZX-xgx"/>
     </inferredMetricsTieBreakers>
 </document>

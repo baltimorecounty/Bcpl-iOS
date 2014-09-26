@@ -48,4 +48,15 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
++ (void) initialize {
+    // TODO: put in whatever custom user agent you want here:
+    NSString* userAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19";
+    
+    NSDictionary* initDefaults = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                  userAgent, @"UserAgent",
+                                  nil];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:initDefaults];
+}
+
 @end

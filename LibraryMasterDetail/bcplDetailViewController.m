@@ -10,7 +10,6 @@
 
 @interface bcplDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
-- (void)configureView;
 @end
 
 @implementation bcplDetailViewController
@@ -39,24 +38,22 @@
         //This puts the dynamically created webview below the navbar
         self.edgesForExtendedLayout = UIRectEdgeNone;
 
-        
         //CGRect webFrame = [[UIScreen mainScreen] bounds];
         //CGRect webFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         webView = [[UIWebView alloc] init];
         webView.delegate = self;
-        webView.scalesPageToFit = YES;
+        //webView.scalesPageToFit = YES;
         
         webView.contentMode = UIViewContentModeScaleToFill;
         webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
         
         NSString *fullURL = [self.wvUrl description];
         NSURL *url = [NSURL URLWithString:fullURL];
         NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
         
+        NSString* secretAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+        
         [webView loadRequest:requestObj];
-        
-        
     }
 }
 
@@ -86,6 +83,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            self.navigationItem.hidesBackButton = YES;
+        }
+    
     // Update the view.
     [self configureView];
 }
@@ -97,6 +98,10 @@
 }
 
 #pragma mark - Split view
+
+- (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
+    return NO;
+}
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {

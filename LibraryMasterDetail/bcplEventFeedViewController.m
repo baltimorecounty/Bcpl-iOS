@@ -12,7 +12,6 @@
 #import "HTMLNode.h"
 
 @interface bcplEventFeedViewController () {
-    NSMutableArray *_objects; //TODO Remove this
     NSXMLParser *parser;
     NSMutableArray *feeds;
     NSMutableArray *feedDates;
@@ -24,7 +23,6 @@
     NSMutableDictionary *rssDateGrouping;
     NSString *screenTitle;
 }
-
 
 @end
 
@@ -38,8 +36,6 @@
 
 - (void)configureView
 {
-    //self.detailViewController = (bcplDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
     self.title = screenTitle;
     
     feeds = [[NSMutableArray alloc] init];
@@ -52,18 +48,6 @@
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
     [parser parse];
-    
-    
-    
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -83,16 +67,31 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [feedDates count];
+    int count = [feedDates count];
+    
+    if (count == 0) {
+        //We plan on faking a record to display a message to user that there are no records
+        return 1;
+    }
+    return count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [feedDates objectAtIndex:section];
+    if ([feedDates count] > 0) {
+        return [feedDates objectAtIndex:section];
+    }
+    //If there no records we don't want to display a header, but we still want to display a record
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([feedDates count] == 0) {
+        //We want to show one record that lets teh user know there are no records
+        return 1;
+    }
+    
     NSString *sectionTitle = [feedDates objectAtIndex:section];
     NSArray *sectionMenuItems = [rssDateGrouping objectForKey:sectionTitle];
     
@@ -101,7 +100,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //Prepare the cell for manipulation
     static NSString *simpleTableIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:simpleTableIdentifier];
+    }
+    
+    //Determine if this feed has any data
+    BOOL hasRows = [feedDates count] > 0;
+    
+    //If it doesn't have any data, create a piece that will notify the user that there are no entries
+    if (!hasRows) {
+        [feedDates addObject:@""];
+        [rssDateGrouping addEntriesFromDictionary:@{@"": @[@{@"title":@"There are no events scheduled for this location.", @"description": @""}]}];
+    }
     
     NSString *sectionTitle = [feedDates objectAtIndex:indexPath.section];
     NSArray *sectionMenuItems = [rssDateGrouping objectForKey:sectionTitle];
@@ -111,23 +125,31 @@
     NSString *myTitle = [item objectForKey:@"title"];
     NSString *htmlDesc = [item objectForKey:@"description"];
     
-    NSString *dateTimeText = [self getDateTime:htmlDesc];
-    NSString *timeText = [self getTime:dateTimeText];
-    NSString *startTime = [self getStartTime:timeText];
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:simpleTableIdentifier];
+    if(hasRows) {
+        NSString *dateTimeText = [self getDateTime:htmlDesc];
+        NSString *timeText = [self getTime:dateTimeText];
+        NSString *startTime = [self getStartTime:timeText];
+        
+        //Set the initial label to teh start time of the event
+        cell.textLabel.text = startTime;
+        
+        //Set that little arrow to let the you know that each cell is selectable
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    else {
+        //Wrap text to display the entire no events message
+        cell.detailTextLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        cell.detailTextLabel.numberOfLines = 0;
+        
+        //Don't allow user to select the row
+        cell.userInteractionEnabled = NO;
+        
+        //Remove table row lines from the view
+        [self.eventFeedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
     
-    
-    cell.textLabel.text = startTime;
-    
+    //Set the main text for the cell
     cell.detailTextLabel.text = [self parseHtml:myTitle];
-    
-    //Set that little arrow to let the you know that each cell is selectable
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
@@ -148,7 +170,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"segueRssDetail"]) {
+    if ([[segue identifier] isEqualToString:@"segueEventDetail"]) {
         bcplRssDetailViewController *rssVc = [segue destinationViewController];
         
         [rssVc setRssDetail:sender];
@@ -222,7 +244,9 @@
             [rssDateGrouping[itemDate] addObject:item];
         }
     
-    [_eventFeedLoadingIndicator stopAnimating];
+    
+    
+    
     
     [self.eventFeedTableView reloadData];
 }

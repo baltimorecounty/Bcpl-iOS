@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface bcplEventFeedViewController : UIViewController <NSXMLParserDelegate>
-
+@interface bcplEventFeedViewController : UIViewController <UISplitViewControllerDelegate, NSXMLParserDelegate>
 @property (strong, nonatomic) id eventItem;
 
 @property (strong, nonatomic) IBOutlet UITableView *eventFeedTableView;
+
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *eventFeedLoadingIndicator;
 
 @end

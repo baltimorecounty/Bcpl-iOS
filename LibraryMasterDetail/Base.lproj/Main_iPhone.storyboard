@@ -172,10 +172,6 @@
                                     <outlet property="delegate" destination="h2z-js-Jgr" id="7cU-8r-ndn"/>
                                 </connections>
                             </webView>
-                            <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MRP-Va-Lor">
-                                <rect key="frame" x="150" y="274" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -187,7 +183,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="DKA-37-bSe"/>
                     <connections>
-                        <outlet property="rssDetailLoadingIndicator" destination="MRP-Va-Lor" id="Vbu-kL-Bxq"/>
                         <outlet property="rssDetailView" destination="vNP-S9-bPx" id="hcK-87-y65"/>
                     </connections>
                 </viewController>
@@ -255,24 +250,20 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Ue9-AY-XwA" id="ayZ-bx-HYk"/>
+                                    <outlet property="delegate" destination="Ue9-AY-XwA" id="xXz-uf-LSO"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="McG-r1-UBf">
-                                <rect key="frame" x="150" y="274" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8MQ-OV-gM5" firstAttribute="top" secondItem="QUk-SJ-Tx1" secondAttribute="top" id="3PA-1Y-MPE"/>
-                            <constraint firstAttribute="bottom" secondItem="8MQ-OV-gM5" secondAttribute="bottom" id="EE7-Nb-7jc"/>
-                            <constraint firstItem="8MQ-OV-gM5" firstAttribute="leading" secondItem="QUk-SJ-Tx1" secondAttribute="leading" id="KnZ-bY-l4O"/>
-                            <constraint firstAttribute="trailing" secondItem="8MQ-OV-gM5" secondAttribute="trailing" id="UyQ-H9-Ijw"/>
+                            <constraint firstItem="8MQ-OV-gM5" firstAttribute="leading" secondItem="QUk-SJ-Tx1" secondAttribute="leading" id="0zb-OP-FiX"/>
+                            <constraint firstItem="8MQ-OV-gM5" firstAttribute="top" secondItem="QUk-SJ-Tx1" secondAttribute="top" id="AIZ-hZ-x8m"/>
+                            <constraint firstAttribute="bottom" secondItem="8MQ-OV-gM5" secondAttribute="bottom" id="n78-tm-vSZ"/>
+                            <constraint firstAttribute="trailing" secondItem="8MQ-OV-gM5" secondAttribute="trailing" id="r1x-Pa-4JL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Rgb-Ox-YF5"/>
                     <connections>
-                        <outlet property="eventFeedLoadingIndicator" destination="McG-r1-UBf" id="mf0-KA-d5K"/>
                         <outlet property="eventFeedTableView" destination="8MQ-OV-gM5" id="801-yO-g8L"/>
                         <segue destination="h2z-js-Jgr" kind="push" identifier="segueEventDetail" id="kBK-yH-uPy"/>
                     </connections>

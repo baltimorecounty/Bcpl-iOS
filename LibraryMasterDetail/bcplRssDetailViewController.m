@@ -9,13 +9,13 @@
 #import "bcplRssDetailViewController.h"
 
 @interface bcplRssDetailViewController ()
-
 @end
 
 @implementation bcplRssDetailViewController
 
 - (void)setRssDetail:(id)rssDetail {
     _rssDetail = rssDetail;
+    
 }
 
 
@@ -29,7 +29,7 @@
     
     [_rssDetailView loadHTMLString:content baseURL:nil];
     
-    [_rssDetailLoadingIndicator stopAnimating];
+    //[_rssDetailLoadingIndicator stopAnimating];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -45,8 +45,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self configureView];
+    
 }
 
 - (void)didReceiveMemoryWarning

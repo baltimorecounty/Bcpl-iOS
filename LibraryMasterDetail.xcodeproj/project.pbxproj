@@ -32,6 +32,7 @@
 		2C69F54219D07EBD0061401C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C69F54119D07EBD0061401C /* libxml2.dylib */; };
 		2C69F58F19D0A7E60061401C /* bcplSubMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C69F58E19D0A7E60061401C /* bcplSubMenuViewController.m */; };
 		2C76493319D3683D004A9575 /* bcplEventBranchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76493219D3683D004A9575 /* bcplEventBranchesViewController.m */; };
+		2CA3101E19D5BBAD006AF451 /* lib-main.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3101D19D5BBAD006AF451 /* lib-main.png */; };
 		2CA85A4019D48D9900B3A694 /* bcplEventFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA85A3F19D48D9900B3A694 /* bcplEventFeedViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		2C69F58E19D0A7E60061401C /* bcplSubMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplSubMenuViewController.m; sourceTree = "<group>"; };
 		2C76493119D3683D004A9575 /* bcplEventBranchesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplEventBranchesViewController.h; sourceTree = "<group>"; };
 		2C76493219D3683D004A9575 /* bcplEventBranchesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplEventBranchesViewController.m; sourceTree = "<group>"; };
+		2CA3101D19D5BBAD006AF451 /* lib-main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lib-main.png"; sourceTree = "<group>"; };
 		2CA85A3E19D48D9900B3A694 /* bcplEventFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplEventFeedViewController.h; sourceTree = "<group>"; };
 		2CA85A3F19D48D9900B3A694 /* bcplEventFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplEventFeedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 		2C69F50319D07AEC0061401C /* LibraryMasterDetail */ = {
 			isa = PBXGroup;
 			children = (
+				2CA3101D19D5BBAD006AF451 /* lib-main.png */,
 				2C69F53B19D07E900061401C /* HTMLNode.h */,
 				2C69F53C19D07E900061401C /* HTMLNode.m */,
 				2C69F53D19D07E900061401C /* HTMLParser.h */,
@@ -286,6 +289,7 @@
 			files = (
 				2C69F51419D07AEC0061401C /* Main_iPad.storyboard in Resources */,
 				2C69F51C19D07AEC0061401C /* Images.xcassets in Resources */,
+				2CA3101E19D5BBAD006AF451 /* lib-main.png in Resources */,
 				2C69F51119D07AEC0061401C /* Main_iPhone.storyboard in Resources */,
 				2C69F50819D07AEC0061401C /* InfoPlist.strings in Resources */,
 				2C2BE9F319D1BB1F008A60F3 /* WhatToReadItems in Resources */,

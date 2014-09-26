@@ -12,7 +12,6 @@
 #import "HTMLNode.h"
 
 @interface bcplRssFeedController () {
-    NSMutableArray *_objects; //TODO Remove this
     NSXMLParser *parser;
     NSMutableArray *feeds;
     NSMutableArray *feedDates;
@@ -38,8 +37,6 @@
 
 - (void)configureView
 {
-    //self.detailViewController = (bcplDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
     self.title = screenTitle;
     
     feeds = [[NSMutableArray alloc] init];
@@ -121,8 +118,6 @@
     }
     cell.textLabel.text = [self parseHtml:myTitle];
     
-    
-
     //Set that little arrow to let the you know that each cell is selectable
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
