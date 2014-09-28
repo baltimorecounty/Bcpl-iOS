@@ -10,33 +10,33 @@
 	<string>LibraryMasterDetail</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>910EBE7C-E467-400A-9F29-2600BAD19C26</key>
-		<string>https://github.com/martypowell/Bcpl-iOS.git</string>
-		<key>BC2544C7-CCCD-47C2-98AA-AD5057CBED22</key>
+		<key>B471BED9AD1BCDB1D65AE8593D137A88BB290F20</key>
 		<string>https://github.com/zootreeves/Objective-C-HMTL-Parser</string>
+		<key>E466CDCF190E01EE738E14B88B678B5FF7F179B0</key>
+		<string>https://github.com/martypowell/Bcpl-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>LibraryMasterDetail.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>910EBE7C-E467-400A-9F29-2600BAD19C26</key>
-		<string>../..</string>
-		<key>BC2544C7-CCCD-47C2-98AA-AD5057CBED22</key>
+		<key>B471BED9AD1BCDB1D65AE8593D137A88BB290F20</key>
 		<string>../../../RssPrototype/RssPrototype/Objective-C-HMTL-Parser</string>
+		<key>E466CDCF190E01EE738E14B88B678B5FF7F179B0</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/martypowell/Bcpl-iOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>910EBE7C-E467-400A-9F29-2600BAD19C26</string>
+	<string>E466CDCF190E01EE738E14B88B678B5FF7F179B0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>910EBE7C-E467-400A-9F29-2600BAD19C26</string>
+			<string>E466CDCF190E01EE738E14B88B678B5FF7F179B0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>LibraryMasterDetail</string>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>BC2544C7-CCCD-47C2-98AA-AD5057CBED22</string>
+			<string>B471BED9AD1BCDB1D65AE8593D137A88BB290F20</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Objective-C-HMTL-Parser</string>
 		</dict>

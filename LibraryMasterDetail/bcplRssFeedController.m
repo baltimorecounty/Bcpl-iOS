@@ -76,22 +76,47 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [feeds count];
+    NSUInteger count = [feeds count];
+    
+    if(count == 0) {
+        return 1;
+    }
+    
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"Cell";
-    NSString *myTitle = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
-    NSString *htmlDesc = [[feeds objectAtIndex:indexPath.row] objectForKey: @"description"];
     
+    //Determine if this feed has any data
+    BOOL hasRows = [feeds count] > 0;
+    
+    //Determine if we want to show the first image included in the feed
     BOOL showImage = [[_rssItem objectForKey:@"showImage"] boolValue];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+        //If we don't have any records to show
+        if (!hasRows) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        }
+        else {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+        }
+        
     }
     
+    
+    
+    //If it doesn't have any data, create a piece that will notify the user that there are no entries
+    if (!hasRows) {
+        [feeds addObject:@{@"title":@"There are currently no items in this feed.", @"description": @""}];
+    }
+    
+    
+    NSString *myTitle = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
+    NSString *htmlDesc = [[feeds objectAtIndex:indexPath.row] objectForKey: @"description"];
     
     if ([screenTitle rangeOfString:@"News"].location != NSNotFound) {
 //        NSString *pubDate = [[feeds objectAtIndex:indexPath.row] objectForKey: @"pubDate"];
@@ -110,16 +135,30 @@
     else {
         cell.detailTextLabel.text = [self parseHtml:htmlDesc];
     }
-    
-    if (showImage) {
-        NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
-        [[cell imageView] setImage:[UIImage imageWithData:myImage]];
 
+    if(!hasRows) {        
+        //Wrap text to display the entire no events message
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.numberOfLines = 0;
+        
+        //Don't allow user to select the row
+        cell.userInteractionEnabled = NO;
+        
+        //Remove table row lines from the view
+        [self.rssFeedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
-    cell.textLabel.text = [self parseHtml:myTitle];
+    else {
+        if (showImage) {
+            NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
+            [[cell imageView] setImage:[UIImage imageWithData:myImage]];
+            
+        }
+        
+        //Set that little arrow to let the you know that each cell is selectable
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     
-    //Set that little arrow to let the you know that each cell is selectable
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = [self parseHtml:myTitle];
     
     return cell;
 }

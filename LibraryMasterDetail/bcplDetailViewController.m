@@ -38,11 +38,8 @@
         //This puts the dynamically created webview below the navbar
         self.edgesForExtendedLayout = UIRectEdgeNone;
 
-        //CGRect webFrame = [[UIScreen mainScreen] bounds];
-        //CGRect webFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         webView = [[UIWebView alloc] init];
         webView.delegate = self;
-        //webView.scalesPageToFit = YES;
         
         webView.contentMode = UIViewContentModeScaleToFill;
         webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
