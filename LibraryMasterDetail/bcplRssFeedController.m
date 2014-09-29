@@ -148,11 +148,11 @@
         [self.rssFeedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
     else {
-        if (showImage) {
-            NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
-            [[cell imageView] setImage:[UIImage imageWithData:myImage]];
-            
-        }
+//        if (showImage) {
+//            NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
+//            [[cell imageView] setImage:[UIImage imageWithData:myImage]];
+//            
+//        }
         
         //Set that little arrow to let the you know that each cell is selectable
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

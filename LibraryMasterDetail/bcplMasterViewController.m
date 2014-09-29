@@ -77,58 +77,51 @@
     
     NSDate *object = _objects[indexPath.row];
     cell.textLabel.text = [object description];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        
-//        
-//    }
-//    else {
-        //Get the row of the cell so we can identify which menu item was selected
-        NSInteger rowOfCell = [indexPath row];
+    //Get the row of the cell so we can identify which menu item was selected
+    NSInteger rowOfCell = [indexPath row];
+    
+    //Get the title of the row selected
+    NSString *menuTitle = _objects[rowOfCell];
+    
+    if ([_webViewObjects containsObject:menuTitle]) {
+        //Get the url that is associated with teh webview, if there is one
+        NSString *url = [self getWebViewUrl:menuTitle];
         
-        //Get the title of the row selected
-        NSString *menuTitle = _objects[rowOfCell];
+        //Object for sending to the detail view controller
+        NSMutableDictionary *menuItem = [NSMutableDictionary dictionaryWithDictionary:@{@"title": menuTitle, @"url": url}];
         
-        if ([_webViewObjects containsObject:menuTitle]) {
-            //Get the url that is associated with teh webview, if there is one
-            NSString *url = [self getWebViewUrl:menuTitle];
+        [self performSegueWithIdentifier:@"showDetail" sender:menuItem];
+    }
+    else {
+        NSArray *rssFeeds = @[@"News", @"Events"];
+        NSMutableDictionary *rssItem;
+        
+        if ([rssFeeds containsObject:menuTitle]) {
+        
+            if([menuTitle isEqualToString:@"News"]) {
             
-            //Object for sending to the detail view controller
-            NSMutableDictionary *menuItem = [NSMutableDictionary dictionaryWithDictionary:@{@"title": menuTitle, @"url": url}];
+                rssItem = [NSMutableDictionary dictionaryWithDictionary:@{@"title": menuTitle, @"url": @"https://www.facebook.com/feeds/page.php?format=rss20&id=7391356947", @"showImage": @false}];
+                [self performSegueWithIdentifier:@"segueRssEvents" sender:rssItem];
+            }
+        
+            if([menuTitle isEqualToString:@"Events"]) {
+                [self performSegueWithIdentifier:@"segueEventBranches" sender:nil];
+            }
+        
             
-            [self performSegueWithIdentifier:@"showDetail" sender:menuItem];
         }
         else {
-            NSArray *rssFeeds = @[@"News", @"Events"];
-            NSMutableDictionary *rssItem;
-            
-            if ([rssFeeds containsObject:menuTitle]) {
-            
-                if([menuTitle isEqualToString:@"News"]) {
-                
-                    rssItem = [NSMutableDictionary dictionaryWithDictionary:@{@"title": menuTitle, @"url": @"https://www.facebook.com/feeds/page.php?format=rss20&id=7391356947", @"showImage": @false}];
-                    [self performSegueWithIdentifier:@"segueRssEvents" sender:rssItem];
-                }
-            
-                if([menuTitle isEqualToString:@"Events"]) {
-//                    rssItem = [NSMutableDictionary dictionaryWithDictionary:@{@"title": menuTitle, @"url": @"http://md.evanced.info/bcpl/lib/eventsxml.asp?ag=&et=&lib=ALL&nd=30&feedtitle=Baltimore+County+Public+Library%3CBR%3ESchedule+of+Events&dm=rss2&LangType=0", @"showImage": @false}];
-                    
-                    [self performSegueWithIdentifier:@"segueEventBranches" sender:nil];
-                }
-            
-                
-            }
-            else {
-                //MenuItem should be equal to "What to Read"
-                //This is the only main menu item that takes you to another menu
-                [self performSegueWithIdentifier:@"segueSubMenu" sender:nil];
-            }
+            //MenuItem should be equal to "What to Read"
+            //This is the only main menu item that takes you to another menu
+            [self performSegueWithIdentifier:@"segueSubMenu" sender:nil];
         }
-    //}
+    }
     
 }
 

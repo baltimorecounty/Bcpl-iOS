@@ -16,14 +16,6 @@
 
 @implementation bcplEventBranchesViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -35,6 +27,12 @@
     //Full list of branches
     _branches = [[NSMutableArray alloc] initWithObjects:@"Arbutus", @"Catonsville", @"Cockeysville", @"Essex", @"Hereford", @"Lansdowne", @"Loch Raven", @"Mobile Library Services", @"North Point", @"Owings Mills", @"Parkville-Carney", @"Perry Hall", @"Pikesville",@"Randallstown",@"Reisterstown", @"Rosedale", @"Sollers Point", @"Towson", @"White Marsh", @"Woodlawn", nil];
     
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -60,6 +58,7 @@
     NSDate *object = _branches[indexPath.row];
     
     cell.textLabel.text = [object description];
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -88,12 +87,6 @@
         
         [rssVc setRssItem:sender];
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 //Gets the appropriate url based on the menu title being passed in

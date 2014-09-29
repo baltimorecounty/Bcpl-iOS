@@ -26,7 +26,7 @@
     
     menuItems = @{@"Customers": @[@"New Books", @"New Dvds", @"New CDs", @"New Large Print"], @"Between the Covers": @[@"All Articles", @"Adult Fiction", @"Adult Non Fiction", @"Teen Books", @"Children's Books", @"Picture Books"]};
     
-    sectionTitles = [menuItems allKeys];
+    sectionTitles = [[menuItems allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
     _objects = [[NSMutableArray alloc] initWithObjects:@"All Articles", @"Adult Fiction", @"Adult Non Fiction", @"Teen Books", @"Children's Books", @"Picture Books", @"Ask Us", @"News", nil];
 }

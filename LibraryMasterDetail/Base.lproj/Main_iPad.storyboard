@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -19,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="-851" y="-1104"/>
         </scene>
-        <!--Bcpl Detail View Controller - Detail-->
+        <!--Detail-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
                 <viewController title="Detail" id="JEX-9P-axG" customClass="bcplDetailViewController" sceneMemberID="viewController">
@@ -31,26 +32,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lib-main.png" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-lW-whm">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="lib-gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="6hY-dT-0Jl">
                                 <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lib-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="lHi-Pz-wBB">
+                                <rect key="frame" x="221" y="283" width="260" height="201"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ELY-lW-whm" secondAttribute="bottom" id="cgY-jr-dnA"/>
-                            <constraint firstAttribute="trailing" secondItem="ELY-lW-whm" secondAttribute="trailing" id="gHr-Vr-kHd"/>
-                            <constraint firstItem="ELY-lW-whm" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="kvq-DY-WrA"/>
-                            <constraint firstItem="ELY-lW-whm" firstAttribute="top" secondItem="svH-Pt-448" secondAttribute="top" id="u0b-Mn-AfV"/>
+                            <constraint firstItem="6hY-dT-0Jl" firstAttribute="top" secondItem="svH-Pt-448" secondAttribute="top" id="BFR-Ko-THp"/>
+                            <constraint firstItem="lHi-Pz-wBB" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="OSN-oz-0Wk"/>
+                            <constraint firstItem="lHi-Pz-wBB" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="219" id="Oy5-q6-oRJ"/>
+                            <constraint firstItem="6hY-dT-0Jl" firstAttribute="bottom" secondItem="GAO-Cl-Wes" secondAttribute="top" id="Z1Q-sc-hHQ"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="1472"/>
+            <point key="canvasLocation" x="-2451.5" y="1381"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -67,7 +69,7 @@
             </objects>
             <point key="canvasLocation" x="-2190" y="-906"/>
         </scene>
-        <!--Bcpl Master View Controller - Master-->
+        <!--Master-->
         <scene sceneID="smW-Zh-WAh">
             <objects>
                 <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="bcplMasterViewController" sceneMemberID="viewController">
@@ -75,7 +77,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Arm-wq-HPj" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -107,11 +108,78 @@
                         <segue destination="vfd-zE-VGk" kind="push" identifier="showDetail" splitViewControllerTargetIndex="1" id="C9c-d9-kHI"/>
                         <segue destination="zxn-DM-Z0K" kind="push" identifier="segueSubMenu" id="g3l-Nv-jBr"/>
                         <segue destination="Je3-hQ-ARH" kind="push" identifier="segueRssEvents" id="Ztm-nL-e9z"/>
+                        <segue destination="ubZ-Ja-gRc" kind="push" identifier="segueEventBranches" id="TKq-9g-H3f"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-292" y="-1104"/>
+        </scene>
+        <!--Bcpl Event Branches View Controller-->
+        <scene sceneID="Htu-YJ-WRF">
+            <objects>
+                <viewController id="ubZ-Ja-gRc" customClass="bcplEventBranchesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vys-Mc-RGL"/>
+                        <viewControllerLayoutGuide type="bottom" id="fgO-3v-9VU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5g5-rd-oXz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xt7-Dt-F2V">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ubZ-Ja-gRc" id="OZE-Y4-iYJ"/>
+                                    <outlet property="delegate" destination="ubZ-Ja-gRc" id="UIT-3T-75Y"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mpi-EG-gGE"/>
+                    <connections>
+                        <outlet property="eventBranchesTableView" destination="xt7-Dt-F2V" id="4eW-oY-w7M"/>
+                        <segue destination="xrk-Oe-iLa" kind="push" identifier="segueEventFeed" id="8IY-Lz-fIT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p94-XQ-cDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-280" y="511"/>
+        </scene>
+        <!--Bcpl Event Feed View Controller-->
+        <scene sceneID="FVn-kB-Gbp">
+            <objects>
+                <viewController id="xrk-Oe-iLa" customClass="bcplEventFeedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ooM-FO-gaf"/>
+                        <viewControllerLayoutGuide type="bottom" id="snv-jb-Vlh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xUV-zc-F6M">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="e4z-wa-Arc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="xrk-Oe-iLa" id="uhi-Tg-87J"/>
+                                    <outlet property="delegate" destination="xrk-Oe-iLa" id="iNE-7e-eFa"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pOx-eD-ZCG"/>
+                    <connections>
+                        <outlet property="eventFeedTableView" destination="e4z-wa-Arc" id="i7c-Re-dk2"/>
+                        <segue destination="uzp-Cm-c9K" kind="push" identifier="segueEventDetail" splitViewControllerTargetIndex="1" id="fxh-Mb-VDV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bSc-qV-hVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="387" y="511"/>
         </scene>
         <!--Bcpl Sub Menu View Controller-->
         <scene sceneID="Mcg-bW-sZH">
@@ -127,7 +195,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eMD-Ux-N6P">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="zxn-DM-Z0K" id="BNH-T1-NQK"/>
@@ -142,17 +209,16 @@
                             <constraint firstAttribute="trailing" secondItem="eMD-Ux-N6P" secondAttribute="trailing" id="Lnr-LL-o6S"/>
                             <constraint firstAttribute="bottom" secondItem="eMD-Ux-N6P" secondAttribute="bottom" id="l03-Yv-QBq"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="RV6-iQ-I3A"/>
                     <connections>
                         <outlet property="whatToReadMenu" destination="eMD-Ux-N6P" id="2hY-g3-zWS"/>
-                        <segue destination="Je3-hQ-ARH" kind="push" identifier="segueRssFeed" id="y8B-ZX-xgx"/>
+                        <segue destination="Je3-hQ-ARH" kind="push" identifier="segueRssFeed" id="nAb-mC-pTO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wMU-qL-SpU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="662" y="-276"/>
+            <point key="canvasLocation" x="568" y="-516"/>
         </scene>
         <!--Bcpl Rss Feed Controller-->
         <scene sceneID="Dmk-Qg-OrF">
@@ -168,7 +234,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="F1D-eb-Hkv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Je3-hQ-ARH" id="6BL-DO-2cb"/>
@@ -177,7 +242,6 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="Rsy-jq-V6D"/>
                     <connections>
@@ -203,7 +267,6 @@
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIz-w5-ph2">
                                 <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
@@ -214,7 +277,6 @@
                             <constraint firstAttribute="trailing" secondItem="xIz-w5-ph2" secondAttribute="trailing" id="sZv-iB-aWa"/>
                             <constraint firstAttribute="bottom" secondItem="xIz-w5-ph2" secondAttribute="bottom" id="wbo-HX-vlf"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="CPU-Fs-Wdo"/>
                     <connections>
@@ -223,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjI-1H-hxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1975" y="-1104"/>
+            <point key="canvasLocation" x="2302.5" y="-1104"/>
         </scene>
         <!--Bcpl Detail View Controller-->
         <scene sceneID="tio-Ed-zw5">
@@ -239,12 +301,10 @@
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t03-uf-rIx">
                                 <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Foi-Om-v3X">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Foi-Om-v3X">
                                 <rect key="frame" x="341" y="374" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -256,7 +316,6 @@
                             <constraint firstAttribute="bottom" secondItem="t03-uf-rIx" secondAttribute="bottom" id="fbI-UR-dYU"/>
                             <constraint firstItem="Foi-Om-v3X" firstAttribute="centerX" secondItem="t03-uf-rIx" secondAttribute="centerX" id="hhh-oD-7LQ"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="RDN-hn-cPk"/>
                     <connections>
@@ -266,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zq5-FJ-iER" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="415" y="-2358"/>
+            <point key="canvasLocation" x="646.5" y="-2114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
@@ -281,11 +340,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-869" y="1472"/>
+            <point key="canvasLocation" x="-2189.5" y="656"/>
         </scene>
     </scenes>
     <resources>
-        <image name="lib-main.png" width="600" height="800"/>
+        <image name="lib-gradient.png" width="600" height="800"/>
+        <image name="lib-logo.png" width="260" height="201"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -293,6 +353,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="y8B-ZX-xgx"/>
+        <segue reference="Ztm-nL-e9z"/>
+        <segue reference="fxh-Mb-VDV"/>
     </inferredMetricsTieBreakers>
 </document>

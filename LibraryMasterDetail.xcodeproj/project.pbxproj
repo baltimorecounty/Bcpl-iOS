@@ -34,6 +34,8 @@
 		2C76493319D3683D004A9575 /* bcplEventBranchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C76493219D3683D004A9575 /* bcplEventBranchesViewController.m */; };
 		2CA3101E19D5BBAD006AF451 /* lib-main.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3101D19D5BBAD006AF451 /* lib-main.png */; };
 		2CA85A4019D48D9900B3A694 /* bcplEventFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA85A3F19D48D9900B3A694 /* bcplEventFeedViewController.m */; };
+		2CB9A6B619D98EC800878DB4 /* lib-gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB9A6B519D98EC800878DB4 /* lib-gradient.png */; };
+		2CB9A6B819D995BA00878DB4 /* lib-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB9A6B719D995BA00878DB4 /* lib-logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		2CA3101D19D5BBAD006AF451 /* lib-main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lib-main.png"; sourceTree = "<group>"; };
 		2CA85A3E19D48D9900B3A694 /* bcplEventFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplEventFeedViewController.h; sourceTree = "<group>"; };
 		2CA85A3F19D48D9900B3A694 /* bcplEventFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplEventFeedViewController.m; sourceTree = "<group>"; };
+		2CB9A6B519D98EC800878DB4 /* lib-gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lib-gradient.png"; sourceTree = "<group>"; };
+		2CB9A6B719D995BA00878DB4 /* lib-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lib-logo.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,8 @@
 		2C69F50319D07AEC0061401C /* LibraryMasterDetail */ = {
 			isa = PBXGroup;
 			children = (
+				2CB9A6B719D995BA00878DB4 /* lib-logo.png */,
+				2CB9A6B519D98EC800878DB4 /* lib-gradient.png */,
 				2CA3101D19D5BBAD006AF451 /* lib-main.png */,
 				2C69F53B19D07E900061401C /* HTMLNode.h */,
 				2C69F53C19D07E900061401C /* HTMLNode.m */,
@@ -258,6 +264,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "___martypowell___";
 				TargetAttributes = {
+					2C69F4F919D07AEC0061401C = {
+						DevelopmentTeam = 7BDQPT7T4B;
+					};
 					2C69F52019D07AED0061401C = {
 						TestTargetID = 2C69F4F919D07AEC0061401C;
 					};
@@ -288,8 +297,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C69F51419D07AEC0061401C /* Main_iPad.storyboard in Resources */,
+				2CB9A6B619D98EC800878DB4 /* lib-gradient.png in Resources */,
 				2C69F51C19D07AEC0061401C /* Images.xcassets in Resources */,
 				2CA3101E19D5BBAD006AF451 /* lib-main.png in Resources */,
+				2CB9A6B819D995BA00878DB4 /* lib-logo.png in Resources */,
 				2C69F51119D07AEC0061401C /* Main_iPhone.storyboard in Resources */,
 				2C69F50819D07AEC0061401C /* InfoPlist.strings in Resources */,
 				2C2BE9F319D1BB1F008A60F3 /* WhatToReadItems in Resources */,
@@ -457,6 +468,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LibraryMasterDetail/LibraryMasterDetail-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -471,6 +484,7 @@
 				);
 				INFOPLIST_FILE = "LibraryMasterDetail/LibraryMasterDetail-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -480,6 +494,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LibraryMasterDetail/LibraryMasterDetail-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -489,6 +505,7 @@
 				);
 				INFOPLIST_FILE = "LibraryMasterDetail/LibraryMasterDetail-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
