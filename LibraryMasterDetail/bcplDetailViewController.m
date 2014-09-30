@@ -27,33 +27,6 @@
     _wvTitle = [_menuItem objectForKey:@"title"];
 }
 
-- (void)configureView
-{
-    // Update the user interface for the detail item.
-
-    if (self.wvUrl) {
-        //Set the title of the page to the menu Item selected
-        self.navigationItem.title = self.wvTitle;
-        
-        //This puts the dynamically created webview below the navbar
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-
-        webView = [[UIWebView alloc] init];
-        webView.delegate = self;
-        
-        webView.contentMode = UIViewContentModeScaleToFill;
-        webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
-        NSString *fullURL = [self.wvUrl description];
-        NSURL *url = [NSURL URLWithString:fullURL];
-        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-        
-        NSString* secretAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-        
-        [webView loadRequest:requestObj];
-    }
-}
-
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [self.detailViewLoadingIndicator startAnimating];
     self.detailViewLoadingIndicator.hidden = NO;
@@ -61,13 +34,14 @@
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
     [self.detailViewLoadingIndicator stopAnimating];
-    [self.view addSubview:webView];
     
-    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    NSString* js =
+    @"var meta = document.createElement('meta'); "
+    "meta.setAttribute( 'name', 'viewport' ); "
+    "meta.setAttribute( 'content', 'width = device-width; initial-scale = 1.0; maximum-scale=1.0; user-scalable-0' ); "
+    "document.getElementsByTagName('head')[0].appendChild(meta)";
     
-    //Fixes view for portrait and landscape
-    //Needs to be applied after teh subview is added ot teh screen
-    [webView setFrame:frame];
+    [self.webView stringByEvaluatingJavaScriptFromString: js];
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
@@ -84,8 +58,17 @@
             self.navigationItem.hidesBackButton = YES;
         }
     
-    // Update the view.
-    [self configureView];
+    self.navigationItem.title = self.wvTitle;
+    
+    NSString *fullURL = [self.wvUrl description];
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    
+    self.webView.delegate = self;
+    
+   
+    
+    [webView loadRequest:requestObj];
 }
 
 - (void)didReceiveMemoryWarning

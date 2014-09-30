@@ -52,7 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2451.5" y="1381"/>
+            <point key="canvasLocation" x="-2189.5" y="1604"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -299,27 +299,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t03-uf-rIx">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t03-uf-rIx">
                                 <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Foi-Om-v3X">
-                                <rect key="frame" x="341" y="374" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Foi-Om-v3X" firstAttribute="centerY" secondItem="t03-uf-rIx" secondAttribute="centerY" id="8oF-Tc-NLm"/>
                             <constraint firstAttribute="trailing" secondItem="t03-uf-rIx" secondAttribute="trailing" id="GUd-UL-ZQs"/>
                             <constraint firstItem="t03-uf-rIx" firstAttribute="top" secondItem="9NY-5N-S2b" secondAttribute="top" id="M02-fH-EAD"/>
                             <constraint firstItem="t03-uf-rIx" firstAttribute="leading" secondItem="9NY-5N-S2b" secondAttribute="leading" id="PJI-bS-Phv"/>
                             <constraint firstAttribute="bottom" secondItem="t03-uf-rIx" secondAttribute="bottom" id="fbI-UR-dYU"/>
-                            <constraint firstItem="Foi-Om-v3X" firstAttribute="centerX" secondItem="t03-uf-rIx" secondAttribute="centerX" id="hhh-oD-7LQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RDN-hn-cPk"/>
                     <connections>
-                        <outlet property="detailViewLoadingIndicator" destination="Foi-Om-v3X" id="jAJ-2r-KrY"/>
                         <outlet property="webView" destination="t03-uf-rIx" id="1Bp-Xm-VH0"/>
                     </connections>
                 </viewController>
