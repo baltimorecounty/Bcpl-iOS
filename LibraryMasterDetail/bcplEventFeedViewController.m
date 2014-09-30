@@ -156,11 +156,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *title = [self parseHtml:[[feeds objectAtIndex:indexPath.row] objectForKey: @"title"]];
-    
     NSString *htmlContent = [[feeds objectAtIndex:indexPath.row] objectForKey: @"description"];
     
-    NSDictionary *eventDetails = @{@"title": title, @"content": htmlContent};
+    NSString *sectionTitle = [feedDates objectAtIndex:indexPath.section];
+    NSArray *sectionMenuItems = [rssDateGrouping objectForKey:sectionTitle];
+    NSDictionary *item = [sectionMenuItems objectAtIndex:indexPath.row];
+    
+    NSDictionary *eventDetails = @{@"title": [item objectForKey:@"title"], @"content": [item objectForKey:@"description"]};
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
     }

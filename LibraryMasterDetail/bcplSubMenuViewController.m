@@ -84,8 +84,7 @@
         NSString *url = [self getRssViewUrl:item];
         
         NSDictionary *rssItem = @{@"title": item, @"url": url, @"showImage": @YES};
-        
-        
+    
         [self performSegueWithIdentifier:@"segueRssFeed" sender:rssItem];
     
 }

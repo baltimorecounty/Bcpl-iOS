@@ -49,7 +49,6 @@
         }
 
     }
-    else {
         if (![_wvTitle isEqualToString:@"Ask Us"] || ![_wvTitle isEqualToString:@"Mobile Tools"]) {
             NSString*js =
             @"var meta = document.createElement('meta'); "
@@ -61,8 +60,6 @@
             
             
         }
-        
-    }
     
     self.webView.hidden = NO;
     
