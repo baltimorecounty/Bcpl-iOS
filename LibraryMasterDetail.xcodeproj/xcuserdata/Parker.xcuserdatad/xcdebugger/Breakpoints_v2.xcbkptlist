@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LibraryMasterDetail/bcplDetailViewController.m"
-            timestampString = "433783862.901682"
+            timestampString = "433785574.275616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "-webViewDidFinishLoad:"
             landmarkType = "5">
          </BreakpointContent>

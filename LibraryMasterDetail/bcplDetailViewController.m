@@ -30,18 +30,42 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [self.detailViewLoadingIndicator startAnimating];
     self.detailViewLoadingIndicator.hidden = NO;
+    self.webView.hidden = YES;
 }
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
     [self.detailViewLoadingIndicator stopAnimating];
     
-    NSString* js =
-    @"var meta = document.createElement('meta'); "
-    "meta.setAttribute( 'name', 'viewport' ); "
-    "meta.setAttribute( 'content', 'width = device-width; initial-scale = 1.0; maximum-scale=1.0; user-scalable-0' ); "
-    "document.getElementsByTagName('head')[0].appendChild(meta)";
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        
+        if ([_wvTitle isEqualToString:@"Ask Us"]) {
+            NSString* js =
+            @"var meta = document.createElement('meta'); "
+            "meta.setAttribute( 'name', 'viewport' ); "
+            "meta.setAttribute( 'content', 'width = device-width; initial-scale = 1.5; maximum-scale=1.5; user-scalable-0' ); "
+            "document.getElementsByTagName('head')[0].appendChild(meta)";
+            
+            
+        }
+
+    }
+    else {
+        if (![_wvTitle isEqualToString:@"Ask Us"] || ![_wvTitle isEqualToString:@"Mobile Tools"]) {
+            NSString*js =
+            @"var meta = document.createElement('meta'); "
+            "meta.setAttribute( 'name', 'viewport' ); "
+            "meta.setAttribute( 'content', 'width = device-width; initial-scale = 1.25; maximum-scale=1.25; user-scalable-0' ); "
+            "document.getElementsByTagName('head')[0].appendChild(meta)";
+            
+            [self.webView stringByEvaluatingJavaScriptFromString: js];
+            
+            
+        }
+        
+    }
     
-    [self.webView stringByEvaluatingJavaScriptFromString: js];
+    self.webView.hidden = NO;
+    
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
@@ -65,8 +89,6 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     
     self.webView.delegate = self;
-    
-   
     
     [webView loadRequest:requestObj];
 }

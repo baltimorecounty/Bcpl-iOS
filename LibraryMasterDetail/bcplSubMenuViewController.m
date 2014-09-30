@@ -24,7 +24,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.title = @"What To Read";
     
-    menuItems = @{@"Customers": @[@"New Books", @"New Dvds", @"New CDs", @"New Large Print"], @"Between the Covers": @[@"All Articles", @"Adult Fiction", @"Adult Non Fiction", @"Teen Books", @"Children's Books", @"Picture Books"]};
+    menuItems = @{@"Customers": @[@"New Books", @"New DVDs", @"New CDs", @"New Large Print"], @"Between the Covers": @[@"All Articles", @"Adult Fiction", @"Adult Non Fiction", @"Teen Books", @"Children's Books", @"Picture Books"]};
     
     sectionTitles = [[menuItems allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
