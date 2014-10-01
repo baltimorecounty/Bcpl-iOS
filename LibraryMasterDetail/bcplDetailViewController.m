@@ -8,6 +8,7 @@
 
 #import "bcplDetailViewController.h"
 
+
 @interface bcplDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @end
@@ -32,15 +33,25 @@
     //self.detailViewLoadingIndicator.hidden = NO;
     self.webView.hidden = YES;
     
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
+    //HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     
-    HUD.delegate = self;
-    HUD.labelText = @"Loading";
+    MBProgressHUD *myHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //[self.navigationController.view addSubview:HUD];
     
-    [HUD show:YES];
+    //HUD.delegate = self;
+    myHUD.labelText = @"Loading";
+    
+    //[HUD show:YES];
     
     //[HUD showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    if ([error code] != NSURLErrorCancelled) {
+        //show error alert, etc.
+         [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }
 }
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
@@ -54,11 +65,12 @@
             "meta.setAttribute( 'content', 'width = device-width; initial-scale = 1.5; maximum-scale=1.5; user-scalable-0' ); "
             "document.getElementsByTagName('head')[0].appendChild(meta)";
             
+            [self.webView stringByEvaluatingJavaScriptFromString: js];
             
         }
 
     }
-        if (![_wvTitle isEqualToString:@"Ask Us"] || ![_wvTitle isEqualToString:@"Mobile Tools"]) {
+        if (![_wvTitle isEqualToString:@"Ask Us"]) {
             NSString*js =
             @"var meta = document.createElement('meta'); "
             "meta.setAttribute( 'name', 'viewport' ); "
@@ -71,13 +83,10 @@
         }
     
     self.webView.hidden = NO;
-    [HUD hide:YES];
     
-}
-
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    //[HUD hide:YES];
     
-    NSLog(@"Error for WEBVIEW: %@", [error description]);
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)viewDidLoad
