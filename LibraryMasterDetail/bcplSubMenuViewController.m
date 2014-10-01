@@ -85,11 +85,12 @@
         
         NSDictionary *rssItem = @{@"title": item, @"url": url, @"showImage": @YES};
     
-        [self performSegueWithIdentifier:@"segueRssFeed" sender:rssItem];
-    
+    [self performSegueWithIdentifier:@"segueRssFeed" sender:rssItem];
 }
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
     if ([[segue identifier] isEqualToString:@"segueRssFeed"]) {
         bcplRssFeedController *rssVc = [segue destinationViewController];
         
@@ -115,7 +116,7 @@
         return @"http://www.bcpl.info/taxonomy/term/188/0/feed";
     }
     else if ([menuTitle isEqualToString:@"children's books"]) {
-        return @"http://http/www.bcpl.info/taxonomy/term/191/0/feed";
+        return @"http://www.bcpl.info/taxonomy/term/191/0/feed";
     }
     else if ([menuTitle isEqualToString:@"picture books"]) {
         return @"http://www.bcpl.info/taxonomy/term/270/0/feed";

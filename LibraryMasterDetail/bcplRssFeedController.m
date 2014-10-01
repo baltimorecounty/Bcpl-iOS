@@ -23,6 +23,7 @@
     NSString *element;
     NSMutableDictionary *rssDateGrouping;
     NSString *screenTitle;
+    BOOL noResults;
 }
 
 @end
@@ -41,14 +42,36 @@
     
     feeds = [[NSMutableArray alloc] init];
     
-    NSString *urlStr = [_rssItem objectForKey:@"url"];
-    
-    NSURL *url = [NSURL URLWithString:urlStr];
-    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-    
-    [parser setDelegate:self];
-    [parser setShouldResolveExternalEntities:NO];
-    [parser parse];
+    dispatch_async( dispatch_get_global_queue(0, 0), ^{
+        
+        NSString *urlStr = [_rssItem objectForKey:@"url"];
+        
+        NSURL *url = [NSURL URLWithString:urlStr];
+        parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+        
+        [parser setDelegate:self];
+        [parser setShouldResolveExternalEntities:NO];
+        
+        // call the result handler block on the main queue (i.e. main thread)
+        dispatch_async( dispatch_get_main_queue(), ^{
+            // running synchronously on the main thread now -- call the handler
+            [parser parse];
+            
+            if ([feeds count] == 0) {
+                noResults = YES;
+                [feeds addObject:@{@"title":@"There are currently no items in this feed.", @"description": @"No Results"}];
+            }
+
+            [_rssFeedTableView reloadData];
+            
+            [HUD hide:YES];
+            
+            self.rssFeedTableView.hidden = NO;
+            
+            
+            
+        });
+    });
     
 }
 
@@ -57,6 +80,17 @@
 {
     [super viewDidLoad];
     screenTitle = [_rssItem objectForKey:@"title"];
+    
+    self.rssFeedTableView.hidden = YES;
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    HUD.delegate = self;
+    HUD.labelText = @"Loading";
+    
+    [HUD show:YES];
+    
     
     [self configureView];
 }
@@ -78,9 +112,9 @@
 {
     NSUInteger count = [feeds count];
     
-    if(count == 0) {
-        return 1;
-    }
+//    if(count == 0) {
+//        return 1;
+//    }
     
     return count;
 }
@@ -89,16 +123,13 @@
 {
     static NSString *simpleTableIdentifier = @"Cell";
     
-    //Determine if this feed has any data
-    BOOL hasRows = [feeds count] > 0;
-    
     //Determine if we want to show the first image included in the feed
     BOOL showImage = [[_rssItem objectForKey:@"showImage"] boolValue];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil) {
         //If we don't have any records to show
-        if (!hasRows) {
+        if (noResults) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
         }
         else {
@@ -106,15 +137,7 @@
         }
         
     }
-    
-    
-    
-    //If it doesn't have any data, create a piece that will notify the user that there are no entries
-    if (!hasRows) {
-        [feeds addObject:@{@"title":@"There are currently no items in this feed.", @"description": @""}];
-    }
-    
-    
+
     NSString *myTitle = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
     NSString *htmlDesc = [[feeds objectAtIndex:indexPath.row] objectForKey: @"description"];
     
@@ -136,7 +159,7 @@
         cell.detailTextLabel.text = [self parseHtml:htmlDesc];
     }
 
-    if(!hasRows) {        
+    if(noResults) {
         //Wrap text to display the entire no events message
         cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
         cell.textLabel.numberOfLines = 0;
@@ -145,20 +168,20 @@
         cell.userInteractionEnabled = NO;
         
         //Remove table row lines from the view
-        [self.rssFeedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        [_rssFeedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
     else {
-//        if (showImage) {
-//            NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
-//            [[cell imageView] setImage:[UIImage imageWithData:myImage]];
-//            
-//        }
-        
         //Set that little arrow to let the you know that each cell is selectable
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        if (showImage && !noResults) {
+            NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
+            [[cell imageView] setImage:[UIImage imageWithData:myImage]];
+        }
     }
     
     cell.textLabel.text = [self parseHtml:myTitle];
+    //cell.textLabel.text = myTitle;
     
     return cell;
 }

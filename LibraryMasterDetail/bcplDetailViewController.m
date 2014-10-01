@@ -28,13 +28,22 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [self.detailViewLoadingIndicator startAnimating];
-    self.detailViewLoadingIndicator.hidden = NO;
+    //[self.detailViewLoadingIndicator startAnimating];
+    //self.detailViewLoadingIndicator.hidden = NO;
     self.webView.hidden = YES;
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    HUD.delegate = self;
+    HUD.labelText = @"Loading";
+    
+    [HUD show:YES];
+    
+    //[HUD showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
 }
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
-    [self.detailViewLoadingIndicator stopAnimating];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         
@@ -62,6 +71,7 @@
         }
     
     self.webView.hidden = NO;
+    [HUD hide:YES];
     
 }
 

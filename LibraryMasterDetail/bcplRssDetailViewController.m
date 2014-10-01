@@ -28,8 +28,6 @@
     NSString *content = [_rssDetail objectForKey:@"content"];
     
     [_rssDetailView loadHTMLString:content baseURL:nil];
-    
-    //[_rssDetailLoadingIndicator stopAnimating];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

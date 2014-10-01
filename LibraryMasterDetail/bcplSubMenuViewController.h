@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @class bcplRssFeedController;
 
-@interface bcplSubMenuViewController : UIViewController <UISplitViewControllerDelegate>
+@interface bcplSubMenuViewController : UIViewController <UISplitViewControllerDelegate, MBProgressHUDDelegate> {
+    MBProgressHUD *HUD;
+}
 
 @property (strong, nonatomic) IBOutlet UITableView *whatToReadMenu;
 

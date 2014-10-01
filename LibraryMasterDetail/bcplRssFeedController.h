@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFNetworking.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
-@interface bcplRssFeedController : UIViewController <UISplitViewControllerDelegate, NSXMLParserDelegate>
+@interface bcplRssFeedController : UIViewController <UISplitViewControllerDelegate, NSXMLParserDelegate, MBProgressHUDDelegate> {
+    MBProgressHUD *HUD;
+}
 
 @property (retain) NSMutableArray *allEntries;
 

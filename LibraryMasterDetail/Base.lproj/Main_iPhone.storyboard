@@ -200,23 +200,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sqa-0y-BE4">
-                                <rect key="frame" x="150" y="274" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zJd-6J-IWf" secondAttribute="trailing" id="Bhc-ZY-6Hv"/>
                             <constraint firstItem="zJd-6J-IWf" firstAttribute="top" secondItem="MMQ-IT-qOo" secondAttribute="top" id="EBr-fR-jaV"/>
                             <constraint firstAttribute="bottom" secondItem="zJd-6J-IWf" secondAttribute="bottom" id="I1W-y3-pjr"/>
                             <constraint firstItem="zJd-6J-IWf" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" id="PB3-nb-8Sb"/>
-                            <constraint firstItem="zJd-6J-IWf" firstAttribute="centerX" secondItem="sqa-0y-BE4" secondAttribute="centerX" id="Qfy-n3-iMx"/>
-                            <constraint firstItem="zJd-6J-IWf" firstAttribute="centerY" secondItem="sqa-0y-BE4" secondAttribute="centerY" id="ldi-Ge-hWl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
                     <connections>
-                        <outlet property="detailViewLoadingIndicator" destination="sqa-0y-BE4" id="QVR-Ld-DbR"/>
                         <outlet property="webView" destination="zJd-6J-IWf" id="VhI-UQ-3VV"/>
                     </connections>
                 </viewController>
