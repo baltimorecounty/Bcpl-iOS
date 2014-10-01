@@ -22,6 +22,7 @@
     NSString *element;
     NSMutableDictionary *rssDateGrouping;
     NSString *screenTitle;
+    BOOL noResults;
 }
 
 @end
@@ -36,10 +37,9 @@
 
 - (void)configureView
 {
-    self.title = screenTitle;
     
     feeds = [[NSMutableArray alloc] init];
-    
+    dispatch_async( dispatch_get_global_queue(0, 0), ^{
     NSString *urlStr = [_eventItem objectForKey:@"url"];
     
     NSURL *url = [NSURL URLWithString:urlStr];
@@ -47,14 +47,40 @@
     
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
-    [parser parse];
+        dispatch_async( dispatch_get_main_queue(), ^{
+            [parser parse];
+            
+            if ([feedDates count] == 0) {
+                noResults = YES;
+                [feedDates addObject:@""];
+                [rssDateGrouping addEntriesFromDictionary:@{@"": @[@{@"title":@"There are no events scheduled for this location.", @"description": @""}]}];
+            }
+            
+            [_eventFeedTableView reloadData];
+            
+            [HUD hide:YES];
+            
+            self.eventFeedTableView.hidden = NO;
+        });
+    });
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     screenTitle = [_eventItem objectForKey:@"title"];
+    // Do any additional setup after loading the view.
+    self.title = screenTitle;
+    
+    self.eventFeedTableView.hidden = YES;
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    HUD.delegate = self;
+    HUD.labelText = @"Loading";
+    
+    [HUD show:YES];
     
     [self configureView];
 }
@@ -69,10 +95,6 @@
 {
     int count = [feedDates count];
     
-    if (count == 0) {
-        //We plan on faking a record to display a message to user that there are no records
-        return 1;
-    }
     return count;
 }
 
@@ -87,10 +109,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([feedDates count] == 0) {
-        //We want to show one record that lets teh user know there are no records
-        return 1;
-    }
     
     NSString *sectionTitle = [feedDates objectAtIndex:section];
     NSArray *sectionMenuItems = [rssDateGrouping objectForKey:sectionTitle];
@@ -108,15 +126,6 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:simpleTableIdentifier];
     }
     
-    //Determine if this feed has any data
-    BOOL hasRows = [feedDates count] > 0;
-    
-    //If it doesn't have any data, create a piece that will notify the user that there are no entries
-    if (!hasRows) {
-        [feedDates addObject:@""];
-        [rssDateGrouping addEntriesFromDictionary:@{@"": @[@{@"title":@"There are no events scheduled for this location.", @"description": @""}]}];
-    }
-    
     NSString *sectionTitle = [feedDates objectAtIndex:indexPath.section];
     NSArray *sectionMenuItems = [rssDateGrouping objectForKey:sectionTitle];
     
@@ -125,7 +134,7 @@
     NSString *myTitle = [item objectForKey:@"title"];
     NSString *htmlDesc = [item objectForKey:@"description"];
     
-    if(hasRows) {
+    if(!noResults) {
         NSString *dateTimeText = [self getDateTime:htmlDesc];
         NSString *timeText = [self getTime:dateTimeText];
         NSString *startTime = [self getStartTime:timeText];
