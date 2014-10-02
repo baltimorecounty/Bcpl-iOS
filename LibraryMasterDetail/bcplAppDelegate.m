@@ -21,8 +21,6 @@ UIAlertView *alert;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         //iPad
@@ -62,6 +60,13 @@ UIAlertView *alert;
                 _vc = [storyboard instantiateViewControllerWithIdentifier:@"bcplNoData"];
                 
                 [navigationController pushViewController:_vc animated:NO];
+                
+                
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    //Re-enable master controls
+                    [self disableMasterViewTable:YES];
+                }
+
             }
             else {
                 //If this is the first time and there is internet is available we don't want to do anything
@@ -69,12 +74,8 @@ UIAlertView *alert;
                 if (didLoad) {
                     //Return the user to the main screen network connection is restored and on ipad
                      if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                        //[navigationController pushViewController:_vc animated:NO];
-                     }
-                     else {
-                         //iPhone
-                         _vc = [storyboard instantiateViewControllerWithIdentifier:@"iphoneMasterView"];
-                         
+                         //Re-enable master controls
+                         [self disableMasterViewTable:NO];
                      }
                     
                     [navigationController popViewControllerAnimated:NO];
@@ -88,6 +89,7 @@ UIAlertView *alert;
                 else {
                     didLoad = YES;
                 }
+                
             }
         
     }];
@@ -97,7 +99,13 @@ UIAlertView *alert;
     
     return YES;
 }
-							
+-(void)disableMasterViewTable:(BOOL)disable {
+    NSDictionary *dataDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:!disable]
+                                                         forKey:@"isReachable"];
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"isNetworkAvailable" object:self userInfo:dataDict];
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -37,6 +37,11 @@
     
     self.detailViewController = (bcplDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleReachabilityChange:)
+                                                 name:@"isNetworkAvailable"
+                                               object:nil];
+    
     self.title = @"BCPL";
     
     //Full list of main menu items
@@ -44,6 +49,19 @@
     
     //List of menu objects that should go directly to a web view
     _webViewObjects = [[NSMutableArray alloc] initWithObjects:@"Catalog", @"My Account", @"Branches and Hours", @"Mobile Tools", @"Ask Us", nil];
+    
+}
+-(void)handleReachabilityChange:(NSNotification *)isNetworkAvailable {
+    NSDictionary *theData = [isNetworkAvailable userInfo];
+    
+    BOOL isReachable = [[theData objectForKey:@"isReachable"] boolValue];
+    
+    if(isReachable) {
+        self.tableView.userInteractionEnabled = YES;
+    }
+    else {
+        self.tableView.userInteractionEnabled = NO;
+    }
     
 }
 
