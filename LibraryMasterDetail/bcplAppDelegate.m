@@ -15,10 +15,13 @@
 UISplitViewController *splitViewController;
 UINavigationController *navigationController;
 NSString * storyboardName;
+BOOL didLoad = NO;
+UIAlertView *alert;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -37,28 +40,55 @@ NSString * storyboardName;
     
     
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
-        
-        //Determine if the network is available
-        BOOL isReachable = ![AFStringFromNetworkReachabilityStatus(status)  isEqual: @"Not Reachable"];
-        
-        //Network is not reachable, let the user know
-        if (!isReachable) {
-            //Create an alert to notify the user there is no network connection
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
-                                                            message:@"You must connect to the Internet to use this application."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            //Show the alert
-            [alert show];
+            NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
             
-            //Load a view that shows there is no internet connection
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-            _vc = [storyboard instantiateViewControllerWithIdentifier:@"bcplNoData"];
-            [navigationController pushViewController:_vc animated:NO];
-        }
-        
+            //Determine if the network is available
+            BOOL isReachable = ![AFStringFromNetworkReachabilityStatus(status)  isEqual: @"Not Reachable"];
+            
+            
+             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+            //Network is not reachable, let the user know
+            if (!isReachable) {
+                //Create an alert to notify the user there is no network connection
+                alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
+                                                                message:@"You must connect to the Internet to use this application."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                //Show the alert
+                [alert show];
+                
+                //Load a view that shows there is no internet connection
+                _vc = [storyboard instantiateViewControllerWithIdentifier:@"bcplNoData"];
+                
+                [navigationController pushViewController:_vc animated:NO];
+            }
+            else {
+                //If this is the first time and there is internet is available we don't want to do anything
+                //Anytime after page load we want to do some stuff when internet is connected again.
+                if (didLoad) {
+                    //Return the user to the main screen network connection is restored and on ipad
+                     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                        //[navigationController pushViewController:_vc animated:NO];
+                     }
+                     else {
+                         //iPhone
+                         _vc = [storyboard instantiateViewControllerWithIdentifier:@"iphoneMasterView"];
+                         
+                     }
+                    
+                    [navigationController popViewControllerAnimated:NO];
+                    
+                    //If the alert is still on the screen dismiss the alert
+                    if (alert) {
+                        [alert dismissWithClickedButtonIndex:0 animated:NO];
+                        alert = nil;
+                    }
+                }
+                else {
+                    didLoad = YES;
+                }
+            }
         
     }];
     
