@@ -7,17 +7,64 @@
 //
 
 #import "bcplAppDelegate.h"
+#import "bcplMasterViewController.h"
+#import "bcplDetailViewController.h"
 
 @implementation bcplAppDelegate
 
+UISplitViewController *splitViewController;
+UINavigationController *navigationController;
+NSString * storyboardName;
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+        //iPad
+        splitViewController = (UISplitViewController *)self.window.rootViewController;
+        navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
+        storyboardName = @"Main_iPad";
     }
+    else {
+        //iPhone
+        navigationController = (UINavigationController *)self.window.rootViewController;
+        storyboardName = @"Main_iPhone";
+    }
+    
+    
+    
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
+        
+        //Determine if the network is available
+        BOOL isReachable = ![AFStringFromNetworkReachabilityStatus(status)  isEqual: @"Not Reachable"];
+        
+        //Network is not reachable, let the user know
+        if (!isReachable) {
+            //Create an alert to notify the user there is no network connection
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection"
+                                                            message:@"You must connect to the Internet to use this application."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            //Show the alert
+            [alert show];
+            
+            //Load a view that shows there is no internet connection
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+            _vc = [storyboard instantiateViewControllerWithIdentifier:@"bcplNoData"];
+            [navigationController pushViewController:_vc animated:NO];
+        }
+        
+        
+    }];
+    
+    // Start monitoring the internet connection
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
     return YES;
 }
 							

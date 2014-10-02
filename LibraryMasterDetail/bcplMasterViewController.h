@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "bcplSubMenuViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @class bcplDetailViewController;
 

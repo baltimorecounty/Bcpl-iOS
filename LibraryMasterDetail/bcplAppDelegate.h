@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/AFNetworking.h>
 
 @interface bcplAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, weak) UIViewController *vc;
+
 
 @end

@@ -5,6 +5,39 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="rTT-0c-gVi">
+            <objects>
+                <viewController storyboardIdentifier="bcplNoData" id="3J7-8P-Gui" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FOr-h4-sNd"/>
+                        <viewControllerLayoutGuide type="bottom" id="lB4-e2-laG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jh0-7T-afl">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You must connect to the internet to view this application." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAi-zi-Cik">
+                                <rect key="frame" x="166" y="530" width="436" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cannot Connect to the Internet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzG-3d-P1n">
+                                <rect key="frame" x="222" y="486" width="325" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4F2-Gq-6z6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qCc-gl-ibB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1140" y="47"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="pY4-Hu-kfo">
             <objects>

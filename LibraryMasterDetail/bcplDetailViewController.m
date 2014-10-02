@@ -1,3 +1,5 @@
+
+
 //
 //  bcplDetailViewController.m
 //  LibraryMasterDetail
@@ -7,7 +9,6 @@
 //
 
 #import "bcplDetailViewController.h"
-
 
 @interface bcplDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
