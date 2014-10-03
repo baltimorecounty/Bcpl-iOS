@@ -3,9 +3,10 @@
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Baltimore County Public Library-->
         <scene sceneID="rTT-0c-gVi">
             <objects>
                 <viewController storyboardIdentifier="bcplNoData" id="3J7-8P-Gui" sceneMemberID="viewController">
@@ -17,26 +18,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="You must connect to the internet to view this application." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAi-zi-Cik">
-                                <rect key="frame" x="166" y="530" width="436" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lib-gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="NQt-Jt-h9U">
+                                <rect key="frame" x="0.0" y="-40" width="768" height="1064"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PzG-3d-P1n">
+                                <rect key="frame" x="98" y="597" width="573" height="63"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="No Internet Connection">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="55" name="HelveticaNeue-UltraLight"/>
+                                            <font key="NSOriginalFont" size="55" name="HelveticaNeue-UltraLight"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Cannot Connect to the Internet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzG-3d-P1n">
-                                <rect key="frame" x="222" y="486" width="325" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="wificon.png" translatesAutoresizingMaskIntoConstraints="NO" id="2iL-hX-7r7">
+                                <rect key="frame" x="235" y="306" width="298" height="283"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAi-zi-Cik">
+                                <rect key="frame" x="136" y="656" width="496" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="You must connect to the internet to view this application.">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="18" name="HelveticaNeue-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="mAi-zi-Cik" secondAttribute="centerY" id="dpQ-kB-nv0"/>
-                            <constraint firstAttribute="centerX" secondItem="PzG-3d-P1n" secondAttribute="centerX" id="dr2-E0-yS9"/>
+                            <constraint firstAttribute="centerY" secondItem="PzG-3d-P1n" secondAttribute="centerY" constant="-100.5" id="5li-M1-2t0"/>
+                            <constraint firstItem="PzG-3d-P1n" firstAttribute="top" secondItem="2iL-hX-7r7" secondAttribute="bottom" constant="-10" id="6eT-FA-pP8"/>
+                            <constraint firstItem="mAi-zi-Cik" firstAttribute="leading" secondItem="Jh0-7T-afl" secondAttribute="leadingMargin" constant="82" id="7Ej-aq-bUu"/>
+                            <constraint firstAttribute="centerX" secondItem="PzG-3d-P1n" secondAttribute="centerX" id="C5e-mB-pKl"/>
+                            <constraint firstAttribute="centerX" secondItem="2iL-hX-7r7" secondAttribute="centerX" id="H2c-PN-b3M"/>
+                            <constraint firstItem="PzG-3d-P1n" firstAttribute="centerX" secondItem="mAi-zi-Cik" secondAttribute="centerX" constant="0.5" id="P1l-za-sZ3"/>
+                            <constraint firstItem="PzG-3d-P1n" firstAttribute="leading" secondItem="Jh0-7T-afl" secondAttribute="leadingMargin" id="VlH-zZ-Buk"/>
+                            <constraint firstAttribute="centerY" secondItem="PzG-3d-P1n" secondAttribute="centerY" id="eVq-FN-eKg"/>
+                            <constraint firstItem="mAi-zi-Cik" firstAttribute="top" secondItem="PzG-3d-P1n" secondAttribute="bottom" constant="10" id="n1O-QC-lva"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="4F2-Gq-6z6">
+                    <navigationItem key="navigationItem" title="Baltimore County Public Library" id="4F2-Gq-6z6">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="hidesBackButton" value="YES"/>
                         </userDefinedRuntimeAttributes>
@@ -44,13 +73,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qCc-gl-ibB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1140" y="47"/>
+            <point key="canvasLocation" x="-1278" y="-2418"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pY4-Hu-kfo">
             <objects>
                 <navigationController id="RMx-3f-FxP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.49999999999999961" contentMode="scaleToFill" id="Pmd-2v-anx">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -381,6 +410,7 @@
     <resources>
         <image name="lib-gradient.png" width="600" height="800"/>
         <image name="lib-logo.png" width="260" height="201"/>
+        <image name="wificon.png" width="296" height="283"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

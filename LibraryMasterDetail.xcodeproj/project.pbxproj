@@ -10,6 +10,7 @@
 		2C2BE9F319D1BB1F008A60F3 /* WhatToReadItems in Resources */ = {isa = PBXBuildFile; fileRef = 2C2BE9F219D1BB1F008A60F3 /* WhatToReadItems */; };
 		2C2BE9F619D1C055008A60F3 /* bcplRssFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BE9F519D1C055008A60F3 /* bcplRssFeedController.m */; };
 		2C2BE9F919D1F49B008A60F3 /* bcplRssDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BE9F819D1F49B008A60F3 /* bcplRssDetailViewController.m */; };
+		2C3A396219DDD3F3002C059A /* wificon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3A396119DDD3F3002C059A /* wificon.png */; };
 		2C69F4FE19D07AEC0061401C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C69F4FD19D07AEC0061401C /* Foundation.framework */; };
 		2C69F50019D07AEC0061401C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C69F4FF19D07AEC0061401C /* CoreGraphics.framework */; };
 		2C69F50219D07AEC0061401C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C69F50119D07AEC0061401C /* UIKit.framework */; };
@@ -57,6 +58,7 @@
 		2C2BE9F519D1C055008A60F3 /* bcplRssFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplRssFeedController.m; sourceTree = "<group>"; };
 		2C2BE9F719D1F49B008A60F3 /* bcplRssDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplRssDetailViewController.h; sourceTree = "<group>"; };
 		2C2BE9F819D1F49B008A60F3 /* bcplRssDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplRssDetailViewController.m; sourceTree = "<group>"; };
+		2C3A396119DDD3F3002C059A /* wificon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wificon.png; sourceTree = "<group>"; };
 		2C69F4FA19D07AEC0061401C /* LibraryMasterDetail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryMasterDetail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C69F4FD19D07AEC0061401C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C69F4FF19D07AEC0061401C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -163,6 +165,7 @@
 		2C69F50319D07AEC0061401C /* LibraryMasterDetail */ = {
 			isa = PBXGroup;
 			children = (
+				2C3A396119DDD3F3002C059A /* wificon.png */,
 				2CB9A6B719D995BA00878DB4 /* lib-logo.png */,
 				2CB9A6B519D98EC800878DB4 /* lib-gradient.png */,
 				2CA3101D19D5BBAD006AF451 /* lib-main.png */,
@@ -319,6 +322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C3A396219DDD3F3002C059A /* wificon.png in Resources */,
 				2C69F51419D07AEC0061401C /* Main_iPad.storyboard in Resources */,
 				2CB9A6B619D98EC800878DB4 /* lib-gradient.png in Resources */,
 				2C69F51C19D07AEC0061401C /* Images.xcassets in Resources */,

@@ -15,6 +15,7 @@
 @end
 
 @implementation bcplDetailViewController
+NSTimer *timer;
 
 
 @synthesize webView, detailViewLoadingIndicator;
@@ -30,6 +31,8 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
+    // webView connected
+    timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(cancelWeb) userInfo:nil repeats:NO];
     //[self.detailViewLoadingIndicator startAnimating];
     //self.detailViewLoadingIndicator.hidden = NO;
     self.webView.hidden = YES;
@@ -47,11 +50,20 @@
     //[HUD showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
 }
 
+- (void)cancelWeb
+{
+    NSLog(@"didn't finish loading within 20 sec");
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    // do anything error
+}
+
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+     NSLog(@"Web Error: %@", error);
+    
     if ([error code] != NSURLErrorCancelled) {
         //show error alert, etc.
-         [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
     }
 }
 

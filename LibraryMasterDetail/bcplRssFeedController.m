@@ -174,7 +174,13 @@
         //Set that little arrow to let the you know that each cell is selectable
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
-        if (showImage && !noResults) {
+        //Check to see if the device is using wifi
+        BOOL hasWiFi = [AFNetworkReachabilityManager sharedManager].reachableViaWiFi;
+        
+        //showImage - parameter we pass in
+        //!noResults - Don't show image if there are no results
+        //hasWiFi - Only show images if we are on a wifi network connection for performance
+        if (showImage && !noResults && hasWiFi) {
             NSData *myImage = [self getImageUrl:[[feeds objectAtIndex:indexPath.row] objectForKey: @"description"]];
             [[cell imageView] setImage:[UIImage imageWithData:myImage]];
         }
@@ -226,23 +232,24 @@
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    NSString *str = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     if ([element isEqualToString:@"title"]) {
-        [title appendString:string];
+        [title appendString:str];
     } else if ([element isEqualToString:@"link"]) {
-        [link appendString:string];
+        [link appendString:str];
     } else if ([element isEqualToString:@"description"]) {
-        [description appendString:string];
+        [description appendString:str];
     } else if ([element isEqualToString:@"pubDate"]) {
-        [description appendString:string];
+        [description appendString:str];
     }
 }
 
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
-    
-    if ([elementName isEqualToString:@"item"]) {
+    //Make sure the title is of substantial length, we were getting some empty feeds that caused problems, so hopefully this is a safeguard
+    if ([elementName isEqualToString:@"item"] && [title length] > 10) {
         
             [item setObject:title forKey:@"title"];
             [item setObject:link forKey:@"link"];
