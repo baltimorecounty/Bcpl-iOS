@@ -24,12 +24,12 @@ NSArray *menuItems;
     mobileTools = [[NSMutableDictionary alloc] init];
     
     [mobileTools setObject:@{@"desc": @"Read 3M e-books.", @"link": @"http://itunes.apple.com/us/app/3m-cloud-library/id466446054?mt=8"} forKey:@"3M Cloud Library"];
-    [mobileTools setObject:@{@"desc": @"Chat online with a live tutor (2 p.m. until midnight).", @"link": @"https://itunes.apple.com/us/app/3m-cloud-library/id466446054?mt=8"} forKey:@"Brainfuse"];
-    [mobileTools setObject:@{@"desc": @"Use research databases.", @"link": @"https://itunes.apple.com/us/app/3m-cloud-library/id466446054?mt=8"} forKey:@"GaleCengage"];
-    [mobileTools setObject:@{@"desc": @"Download language lessons.", @"link": @"https://itunes.apple.com/us/app/3m-cloud-library/id466446054?mt=8"} forKey:@"Mango Languages Library Edition"];
-    [mobileTools setObject:@{@"desc": @"Read or listen to OverDrive audio and e-books.", @"link": @"https://itunes.apple.com/us/app/3m-cloud-library/id466446054?mt=8"} forKey:@"OverDrive"];
-    [mobileTools setObject:@{@"desc": @"Search business and residential listings.", @"link": @"https://itunes.apple.com/us/app/3m-cloud-library/id466446054?mt=8"} forKey:@"RefUSA"];
-    [mobileTools setObject:@{@"desc": @"Download popular magazines.", @"link": @"https://itunes.apple.com/us/app/3m-cloud-library/id466446054?mt=8"} forKey:@"Zinio"];
+    [mobileTools setObject:@{@"desc": @"Chat online with a live tutor (2 p.m. until midnight).", @"link": @"https://itunes.apple.com/us/app/brainfuse/id575242780?mt=8"} forKey:@"Brainfuse"];
+    [mobileTools setObject:@{@"desc": @"Use research databases.", @"link": @"https://itunes.apple.com/us/app/accessmylibrary/id342518632?mt=8"} forKey:@"GaleCengage"];
+    [mobileTools setObject:@{@"desc": @"Download language lessons.", @"link": @"https://itunes.apple.com/us/app/mango-languages-library-edition/id443516516?mt=8&ls=1"} forKey:@"Mango Languages Library Edition"];
+    [mobileTools setObject:@{@"desc": @"Read or listen to OverDrive audio and e-books.", @"link": @"https://itunes.apple.com/us/app/overdrive-media-console/id366869252?mt=8"} forKey:@"OverDrive"];
+    [mobileTools setObject:@{@"desc": @"Search business and residential listings.", @"link": @"https://itunes.apple.com/us/app/referenceusa-for-ipad/id532313135?mt=8"} forKey:@"RefUSA"];
+    [mobileTools setObject:@{@"desc": @"Download popular magazines.", @"link": @"https://itunes.apple.com/us/app/zinio-magazine-newsstand-reader/id364297166?mt=8"} forKey:@"Zinio"];
     
      menuItems= [[mobileTools allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     
@@ -75,16 +75,19 @@ NSArray *menuItems;
     //Object for sending to the detail view controller
     NSMutableDictionary *menuItem = [NSMutableDictionary dictionaryWithDictionary:@{@"title": title, @"url": url}];
     
-    [self performSegueWithIdentifier:@"segueMobileToolsDetail" sender:menuItem];}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"segueMobileToolsDetail"]) {
-        bcpliTunesController *rssVc = [segue destinationViewController];
-        
-        [rssVc setMenuItem:sender];
-    }
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    
+    //[self performSegueWithIdentifier:@"segueMobileToolsDetail" sender:menuItem];
 }
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ([[segue identifier] isEqualToString:@"segueMobileToolsDetail"]) {
+//        bcpliTunesController *rssVc = [segue destinationViewController];
+//        
+//        [rssVc setMenuItem:sender];
+//    }
+//}
 
 
 - (void)didReceiveMemoryWarning {

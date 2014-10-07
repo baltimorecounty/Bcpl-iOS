@@ -61,7 +61,7 @@
 		2C2BE9F719D1F49B008A60F3 /* bcplRssDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplRssDetailViewController.h; sourceTree = "<group>"; };
 		2C2BE9F819D1F49B008A60F3 /* bcplRssDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplRssDetailViewController.m; sourceTree = "<group>"; };
 		2C3A396119DDD3F3002C059A /* wificon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wificon.png; sourceTree = "<group>"; };
-		2C69F4FA19D07AEC0061401C /* LibraryMasterDetail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibraryMasterDetail.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C69F4FA19D07AEC0061401C /* BCPL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCPL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C69F4FD19D07AEC0061401C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C69F4FF19D07AEC0061401C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2C69F50119D07AEC0061401C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -149,7 +149,7 @@
 		2C69F4FB19D07AEC0061401C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2C69F4FA19D07AEC0061401C /* LibraryMasterDetail.app */,
+				2C69F4FA19D07AEC0061401C /* BCPL.app */,
 				2C69F52119D07AED0061401C /* LibraryMasterDetailTests.xctest */,
 			);
 			name = Products;
@@ -269,7 +269,7 @@
 			);
 			name = LibraryMasterDetail;
 			productName = LibraryMasterDetail;
-			productReference = 2C69F4FA19D07AEC0061401C /* LibraryMasterDetail.app */;
+			productReference = 2C69F4FA19D07AEC0061401C /* BCPL.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2C69F52019D07AED0061401C /* LibraryMasterDetailTests */ = {
@@ -557,7 +557,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "LibraryMasterDetail/LibraryMasterDetail-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BCPL;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -579,7 +579,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "LibraryMasterDetail/LibraryMasterDetail-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BCPL;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};

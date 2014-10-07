@@ -53,31 +53,11 @@
                     <navigationItem key="navigationItem" id="tch-Pw-WCB"/>
                     <connections>
                         <outlet property="mobileToolsTabelView" destination="Yc8-N7-8Tf" id="nTI-iW-NJ3"/>
-                        <segue destination="FsV-60-eOy" kind="push" identifier="segueMobileToolsDetail" id="zPd-J9-yYZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h3h-m6-krS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-624" y="924"/>
-        </scene>
-        <!--Bcpli Tunes Controller-->
-        <scene sceneID="rtT-cR-kgV">
-            <objects>
-                <viewController id="FsV-60-eOy" customClass="bcpliTunesController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pQy-0S-5CW"/>
-                        <viewControllerLayoutGuide type="bottom" id="o3X-gZ-GT3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Mdo-1m-V6q">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="5VL-83-4qU"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OWC-Ir-qFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-624" y="1800"/>
         </scene>
         <!--Master-->
         <scene sceneID="VgW-fR-Quf">

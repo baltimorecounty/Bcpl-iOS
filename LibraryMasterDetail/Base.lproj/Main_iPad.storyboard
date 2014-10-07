@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -178,11 +179,48 @@
                         <segue destination="zxn-DM-Z0K" kind="push" identifier="segueSubMenu" id="g3l-Nv-jBr"/>
                         <segue destination="Je3-hQ-ARH" kind="push" identifier="segueRssEvents" id="Ztm-nL-e9z"/>
                         <segue destination="ubZ-Ja-gRc" kind="push" identifier="segueEventBranches" id="TKq-9g-H3f"/>
+                        <segue destination="EqF-G2-rDT" kind="push" identifier="segueMobileTools" id="FPk-B9-iGl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-292" y="-1104"/>
+        </scene>
+        <!--Bcpl Mobile Tools-->
+        <scene sceneID="1pW-iW-hC7">
+            <objects>
+                <viewController id="EqF-G2-rDT" customClass="bcplMobileTools" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l5o-yC-idv"/>
+                        <viewControllerLayoutGuide type="bottom" id="8cf-AS-3Op"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dW9-88-kac">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="O71-an-nOg">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="EqF-G2-rDT" id="cfm-5l-OrJ"/>
+                                    <outlet property="delegate" destination="EqF-G2-rDT" id="wim-Ro-dFr"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8cf-AS-3Op" firstAttribute="top" secondItem="O71-an-nOg" secondAttribute="bottom" id="2VD-3h-A9t"/>
+                            <constraint firstItem="O71-an-nOg" firstAttribute="top" secondItem="dW9-88-kac" secondAttribute="topMargin" id="mcg-oI-Qwp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="KVq-KH-5SD"/>
+                    <connections>
+                        <outlet property="mobileToolsTabelView" destination="O71-an-nOg" id="oVt-LW-eJp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hwy-Kv-g6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1196" y="671"/>
         </scene>
         <!--Bcpl Event Branches View Controller-->
         <scene sceneID="Htu-YJ-WRF">
