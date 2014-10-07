@@ -48,7 +48,7 @@
     _objects = [[NSMutableArray alloc] initWithObjects:@"Catalog", @"My Account", @"Branches and Hours", @"Events", @"What to Read", @"Mobile Tools", @"Ask Us", @"News", nil];
     
     //List of menu objects that should go directly to a web view
-    _webViewObjects = [[NSMutableArray alloc] initWithObjects:@"Catalog", @"My Account", @"Branches and Hours", @"Mobile Tools", @"Ask Us", nil];
+    _webViewObjects = [[NSMutableArray alloc] initWithObjects:@"Catalog", @"My Account", @"Branches and Hours", @"Ask Us", nil];
     
 }
 -(void)handleReachabilityChange:(NSNotification *)isNetworkAvailable {
@@ -134,10 +134,13 @@
         
             
         }
-        else {
+        else if ([menuTitle isEqualToString:@"What to Read"]) {
             //MenuItem should be equal to "What to Read"
             //This is the only main menu item that takes you to another menu
             [self performSegueWithIdentifier:@"segueSubMenu" sender:nil];
+        }
+        else {
+            [self performSegueWithIdentifier:@"segueMobileTools" sender:nil];
         }
     }
     

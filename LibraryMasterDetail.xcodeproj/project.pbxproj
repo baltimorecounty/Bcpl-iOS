@@ -38,6 +38,8 @@
 		2CA85A4019D48D9900B3A694 /* bcplEventFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA85A3F19D48D9900B3A694 /* bcplEventFeedViewController.m */; };
 		2CB9A6B619D98EC800878DB4 /* lib-gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB9A6B519D98EC800878DB4 /* lib-gradient.png */; };
 		2CB9A6B819D995BA00878DB4 /* lib-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB9A6B719D995BA00878DB4 /* lib-logo.png */; };
+		2CED19F519E30790006DE305 /* bcplMobileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CED19F419E30790006DE305 /* bcplMobileTools.m */; };
+		2CFEF62119E31DBF00746C36 /* bcpliTunesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFEF62019E31DBF00746C36 /* bcpliTunesController.m */; };
 		F52AE2CA460DAF377F4F1427 /* libPods-LibraryMasterDetail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A18D5ECCD532CE4AA013A4E /* libPods-LibraryMasterDetail.a */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,10 @@
 		2CA85A3F19D48D9900B3A694 /* bcplEventFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplEventFeedViewController.m; sourceTree = "<group>"; };
 		2CB9A6B519D98EC800878DB4 /* lib-gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lib-gradient.png"; sourceTree = "<group>"; };
 		2CB9A6B719D995BA00878DB4 /* lib-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lib-logo.png"; sourceTree = "<group>"; };
+		2CED19F319E30790006DE305 /* bcplMobileTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcplMobileTools.h; sourceTree = "<group>"; };
+		2CED19F419E30790006DE305 /* bcplMobileTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcplMobileTools.m; sourceTree = "<group>"; };
+		2CFEF61F19E31DBF00746C36 /* bcpliTunesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bcpliTunesController.h; sourceTree = "<group>"; };
+		2CFEF62019E31DBF00746C36 /* bcpliTunesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bcpliTunesController.m; sourceTree = "<group>"; };
 		595F01248467067C6B127EA2 /* Pods-LibraryMasterDetail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LibraryMasterDetail.release.xcconfig"; path = "Pods/Target Support Files/Pods-LibraryMasterDetail/Pods-LibraryMasterDetail.release.xcconfig"; sourceTree = "<group>"; };
 		77E8646BC1F46F05F11EA519 /* Pods-LibraryMasterDetail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LibraryMasterDetail.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LibraryMasterDetail/Pods-LibraryMasterDetail.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -198,6 +204,10 @@
 				2CA85A3F19D48D9900B3A694 /* bcplEventFeedViewController.m */,
 				2C8176D319DB3A97003F6147 /* bcplProgress.h */,
 				2C8176D419DB3A97003F6147 /* bcplProgress.m */,
+				2CED19F319E30790006DE305 /* bcplMobileTools.h */,
+				2CED19F419E30790006DE305 /* bcplMobileTools.m */,
+				2CFEF61F19E31DBF00746C36 /* bcpliTunesController.h */,
+				2CFEF62019E31DBF00746C36 /* bcpliTunesController.m */,
 			);
 			path = LibraryMasterDetail;
 			sourceTree = "<group>";
@@ -392,6 +402,8 @@
 				2C69F50E19D07AEC0061401C /* bcplAppDelegate.m in Sources */,
 				2C69F51719D07AEC0061401C /* bcplMasterViewController.m in Sources */,
 				2C8176D519DB3A97003F6147 /* bcplProgress.m in Sources */,
+				2CFEF62119E31DBF00746C36 /* bcpliTunesController.m in Sources */,
+				2CED19F519E30790006DE305 /* bcplMobileTools.m in Sources */,
 				2C69F54019D07E900061401C /* HTMLParser.m in Sources */,
 				2C69F53A19D07CC10061401C /* RSSEntry.m in Sources */,
 				2C2BE9F919D1F49B008A60F3 /* bcplRssDetailViewController.m in Sources */,
