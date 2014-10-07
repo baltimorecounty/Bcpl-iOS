@@ -121,6 +121,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lib-gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Hu-A6-NNl">
+                                <rect key="frame" x="0.0" y="0.0" width="325" height="568"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faQ-Kg-UEs">
                                 <rect key="frame" x="24" y="317" width="276" height="35"/>
                                 <attributedString key="attributedText">
@@ -153,9 +156,6 @@
                                     <constraint firstAttribute="width" constant="143" id="DuM-EU-1rq"/>
                                     <constraint firstAttribute="height" constant="128" id="qKU-bP-xzy"/>
                                 </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lib-gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Hu-A6-NNl">
-                                <rect key="frame" x="0.0" y="0.0" width="325" height="568"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
