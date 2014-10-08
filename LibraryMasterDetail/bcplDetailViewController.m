@@ -32,29 +32,18 @@ NSTimer *timer;
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     // webView connected
-    timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(cancelWeb) userInfo:nil repeats:NO];
-    //[self.detailViewLoadingIndicator startAnimating];
-    //self.detailViewLoadingIndicator.hidden = NO;
+    timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(cancelWeb) userInfo:nil repeats:NO];
     self.webView.hidden = YES;
     
-    //HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    
     MBProgressHUD *myHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    //[self.navigationController.view addSubview:HUD];
     
-    //HUD.delegate = self;
     myHUD.labelText = @"Loading";
-    
-    //[HUD show:YES];
-    
-    //[HUD showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
+
 }
 
 - (void)cancelWeb
 {
-    NSLog(@"didn't finish loading within 20 sec");
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    // do anything error
+    //[self showWebView:[self getWEbViewScale]];
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -68,38 +57,48 @@ NSTimer *timer;
 }
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
-    
+    [self showWebView:[self getWEbViewScale]];
+}
+
+-(NSString *)getWEbViewScale {
+    NSString* initialScale = nil;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         
         if ([_wvTitle isEqualToString:@"Ask Us"]) {
-            NSString* js =
-            @"var meta = document.createElement('meta'); "
-            "meta.setAttribute( 'name', 'viewport' ); "
-            "meta.setAttribute( 'content', 'width = device-width; initial-scale = 1.5; maximum-scale=1.5; user-scalable-0' ); "
-            "document.getElementsByTagName('head')[0].appendChild(meta)";
-            
-            [self.webView stringByEvaluatingJavaScriptFromString: js];
+            initialScale = @"1.5";
             
         }
-
+        
     }
-        if (![_wvTitle isEqualToString:@"Ask Us"]) {
-            NSString*js =
-            @"var meta = document.createElement('meta'); "
-            "meta.setAttribute( 'name', 'viewport' ); "
-            "meta.setAttribute( 'content', 'width = device-width; initial-scale = 1.25; maximum-scale=1.25; user-scalable-0' ); "
-            "document.getElementsByTagName('head')[0].appendChild(meta)";
-            
-            [self.webView stringByEvaluatingJavaScriptFromString: js];
-            
-            
-        }
+    if (![_wvTitle isEqualToString:@"Ask Us"]) {
+        initialScale = @"1.25";
+    }
     
+    return initialScale;
+}
+
+-(void)showWebView: (NSString *)initalScale {
+    //Setup the view port for the webview
+    //This helps us make pages easier to read
+    NSString *js = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",
+     @"var meta = document.createElement('meta'); ",
+     @"meta.setAttribute( 'name', 'viewport' ); ",
+     @"meta.setAttribute( 'content', 'width = device-width; initial-scale = ",
+     initalScale,
+     @"; maximum-scale=",
+     initalScale,
+     @"1.25; user-scalable-0' ); document.getElementsByTagName('head')[0].appendChild(meta)"];
+    
+    //Execute the viewport script
+    [self.webView stringByEvaluatingJavaScriptFromString: js];
+    
+    //Show the webview
     self.webView.hidden = NO;
     
-    //[HUD hide:YES];
-    
+    //Hide the loading inidcator
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    
 }
 
 - (void)viewDidLoad
@@ -112,6 +111,8 @@ NSTimer *timer;
         }
     
     self.navigationItem.title = self.wvTitle;
+    
+    self.webView.suppressesIncrementalRendering = YES;
     
     NSString *fullURL = [self.wvUrl description];
     NSURL *url = [NSURL URLWithString:fullURL];
