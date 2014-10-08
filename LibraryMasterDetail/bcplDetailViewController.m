@@ -33,7 +33,7 @@ NSTimer *timer;
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     // webView connected
     timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(cancelWeb) userInfo:nil repeats:NO];
-    self.webView.hidden = YES;
+    //self.webView.hidden = YES;
     
     MBProgressHUD *myHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -43,7 +43,9 @@ NSTimer *timer;
 
 - (void)cancelWeb
 {
-    //[self showWebView:[self getWEbViewScale]];
+    NSLog(@"Web Error: %@", @"what is happening");
+    //Show the webview
+    self.webView.hidden = NO;
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
