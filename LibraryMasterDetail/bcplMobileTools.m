@@ -29,7 +29,7 @@ NSArray *menuItems;
     [mobileTools setObject:@{@"desc": @"Download language lessons.", @"link": @"https://itunes.apple.com/us/app/mango-languages-library-edition/id443516516?mt=8&ls=1"} forKey:@"Mango Languages Library Edition"];
     [mobileTools setObject:@{@"desc": @"Read or listen to OverDrive audio and e-books.", @"link": @"https://itunes.apple.com/us/app/overdrive-media-console/id366869252?mt=8"} forKey:@"OverDrive"];
     [mobileTools setObject:@{@"desc": @"Search business and residential listings.", @"link": @"https://itunes.apple.com/us/app/referenceusa-for-ipad/id532313135?mt=8"} forKey:@"RefUSA"];
-    [mobileTools setObject:@{@"desc": @"Download popular magazines.", @"link": @"https://itunes.apple.com/us/app/zinio-magazine-newsstand-reader/id364297166?mt=8"} forKey:@"Zinio"];
+    [mobileTools setObject:@{@"desc": @"Download popular magazines.", @"link": @"https://itunes.apple.com/us/app/zinio-5-000+-digital-magazines/id364297166?mt=8"} forKey:@"Zinio"];
     
      menuItems= [[mobileTools allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     
